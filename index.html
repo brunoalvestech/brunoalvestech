@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bruno Alves · Analista de TI · Infraestrutura, Sistemas e Automações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c12;
+  --bg2:#0e1420;
+  --bg3:#131b28;
+  --blue:#3B82F6;
+  --cyan:#06B6D4;
+  --amber:#F59E0B;
+  --green:#25D366;
+  --text:#e8edf5;
+  --muted:#7a8599;
+  --border:rgba(255,255,255,0.07);
+  --r:12px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(8,12,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);text-decoration:none;letter-spacing:0}
+.nav-logo span{color:var(--blue)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:400;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--green);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .2s;font-family:'DM Sans',sans-serif}
+.nav-cta:hover{opacity:.88}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:var(--blue);font-size:11px;font-weight:500;padding:5px 13px;border-radius:100px;margin-bottom:28px;letter-spacing:.3px;text-transform:uppercase}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,4vw,54px);font-weight:700;line-height:1.15;letter-spacing:-0.5px;margin-bottom:20px}
+.hero h1 .line2{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.22)}
+.hero h1 .accent{color:var(--blue)}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:36px;font-weight:400}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:12px 24px;border-radius:var(--r);font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);border:1px solid var(--border);padding:12px 22px;border-radius:var(--r);font-weight:400;font-size:14px;text-decoration:none;transition:all .2s}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03)}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap}
+.stat{display:flex;flex-direction:column}
+.stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+
+/* SECTION BASE */
+section{padding:80px 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.section-title{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
+.section-sub{color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:48px;font-size:15px}
+
+/* FEATURED SERVICES */
+.featured{background:var(--bg)}
+.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.fcard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.fcard:hover{border-color:rgba(59,130,246,0.35);transform:translateY(-3px)}
+.fcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));opacity:0;transition:opacity .3s}
+.fcard:hover::before{opacity:1}
+.fcard-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:16px}
+.badge-demand{background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.3)}
+.badge-fast{background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid rgba(6,182,212,0.3)}
+.badge-cost{background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3)}
+.badge-rec{background:rgba(37,211,102,0.15);color:var(--green);border:1px solid rgba(37,211,102,0.3)}
+.fcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
+.icon-blue{background:rgba(59,130,246,0.12)}
+.icon-cyan{background:rgba(6,182,212,0.12)}
+.icon-amber{background:rgba(245,158,11,0.12)}
+.icon-green{background:rgba(37,211,102,0.12)}
+.fcard h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:600;margin-bottom:9px;letter-spacing:-0.1px}
+.fcard p{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:16px}
+.fcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.tag{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:3px 10px;border-radius:100px}
+.fcard-meta{font-size:12px;color:var(--muted);margin-bottom:18px;padding-top:14px;border-top:1px solid var(--border)}
+.fcard-meta strong{color:var(--text)}
+.fcard-cta{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:13px;font-weight:500;text-decoration:none;transition:gap .2s}
+.fcard-cta:hover{gap:12px}
+
+/* OTHER SERVICES */
+.other-services{background:var(--bg2)}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.scard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border-color .25s}
+.scard:hover{border-color:rgba(255,255,255,0.12)}
+.scard-icon{font-size:18px;margin-bottom:12px}
+.scard h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;margin-bottom:8px;letter-spacing:0}
+.scard ul{list-style:none;color:var(--muted);font-size:12px;line-height:1.9}
+.scard ul li::before{content:'·  ';color:var(--blue)}
+.scard ul li em{color:var(--cyan);font-style:normal;font-weight:500}
+
+/* PORTFOLIO */
+.portfolio{background:var(--bg)}
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .25s}
+.pcard:hover{border-color:rgba(59,130,246,0.25)}
+.pcard-tags{display:flex;flex-wrap:wrap;gap:6px}
+.ptag{font-size:9px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(59,130,246,0.1);color:var(--blue);border:1px solid rgba(59,130,246,0.2)}
+.pcard h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;letter-spacing:-0.1px}
+.pcard p{color:var(--muted);font-size:13px;line-height:1.65}
+.pcard a{color:var(--cyan);font-size:12px;text-decoration:none;margin-top:auto}
+.pcard a:hover{text-decoration:underline}
+
+/* STACK */
+.stack-section{background:var(--bg2)}
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stack-block{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:24px}
+.stack-block h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
+.stack-block ul{list-style:none;font-size:13px;color:var(--muted);line-height:1.9}
+
+/* SOBRE */
+.sobre{background:var(--bg)}
+.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.sobre-text p{color:var(--muted);line-height:1.8;margin-bottom:14px;font-size:14px}
+.sobre-text p strong{color:var(--text)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.cbadge{font-size:11px;font-weight:500;padding:5px 12px;border-radius:100px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);color:var(--blue)}
+.cbadge.active{background:rgba(37,211,102,0.08);border-color:rgba(37,211,102,0.2);color:var(--green)}
+.sobre-quote{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:28px}
+.sobre-quote blockquote{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-0.1px;color:var(--text);margin-bottom:14px}
+.sobre-quote .quote-sub{color:var(--muted);font-size:13px}
+
+/* CONVERSION */
+.conversion{background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(6,182,212,0.05) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.conversion-inner{text-align:center;max-width:600px;margin:0 auto}
+.conversion h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
+.conversion p{color:var(--muted);font-size:15px;margin-bottom:32px;line-height:1.7}
+.conversion .reply{font-size:12px;color:var(--muted);margin-top:14px}
+.conversion .reply span{color:var(--green)}
+
+/* FOOTER */
+footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
+.footer-left{font-size:13px;color:var(--muted)}
+.footer-left strong{color:var(--text)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s}
+.footer-links a:hover{color:var(--text)}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform .2s}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float::before{content:'';position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(37,211,102,0.4);animation:wa-ring 2.5s infinite}
+@keyframes wa-ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
+.wa-float svg{position:relative;z-index:1}
+
+/* ANNOUNCEMENT BAR */
+.announce{background:rgba(59,130,246,0.1);border-bottom:1px solid rgba(59,130,246,0.2);padding:10px 5%;text-align:center;font-size:13px;color:var(--text);line-height:1.5}
+.announce a{color:var(--green);font-weight:500;text-decoration:none;white-space:nowrap}
+.announce a:hover{text-decoration:underline}
+
+/* CONTACT GRID */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+.contact-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.contact-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.contact-item a{color:var(--muted);text-decoration:none;transition:color .2s}
+.contact-item a:hover{color:var(--text)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .featured-grid,.portfolio-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .stack-grid{grid-template-columns:repeat(2,1fr)}
+  .sobre-inner{grid-template-columns:1fr}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .footer-inner{flex-direction:column;gap:16px;text-align:center}
+}
+@media(max-width:560px){
+  .services-grid,.stack-grid{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announce">
+  Precisa de suporte, infraestrutura, automação ou desenvolvimento? <a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Gostaria%20de%20uma%20análise%20inicial%20sem%20compromisso." target="_blank">Me envie uma mensagem no WhatsApp e receba uma análise inicial sem compromisso →</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>bruno</span>alves.tech</a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#portfolio">Portfólio</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a class="nav-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">WhatsApp</a>
+  <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Disponível para novos projetos</div>
+    <h1>
+      Conectando sua<br>
+      <span class="line2">empresa ao</span><br>
+      <span class="accent">próximo nível.</span>
+    </h1>
+    <p class="hero-sub">Infraestrutura corporativa, servidores, redes, sistemas web e automações — para empresas, escolas, igrejas e profissionais em todo o Brasil. Atendimento remoto ou presencial em Salvador e Região Metropolitana.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+      <a class="btn-secondary" href="#servicos">Ver serviços ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">+1.300</span><span class="stat-label">Usuários gerenciados</span></div>
+      <div class="stat"><span class="stat-num">+3 anos</span><span class="stat-label">Em produção real</span></div>
+      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Atendimento à distância</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED SERVICES -->
+<section class="featured" id="servicos">
+  <div class="section-inner">
+    <p class="section-label">Serviços em destaque</p>
+    <h2 class="section-title">Onde entrego mais resultado</h2>
+    <p class="section-sub">Serviços com alta demanda no mercado atual, entrega rápida e retorno direto para o seu negócio.</p>
+    <div class="featured-grid reveal">
+
+      <div class="fcard">
+        <span class="fcard-badge badge-demand">Alta demanda</span>
+        <div class="fcard-icon icon-green">💬</div>
+        <h3>Chatbot para WhatsApp Business</h3>
+        <p>Automatize seu atendimento e pare de perder clientes por demora na resposta. Fluxos personalizados, IA integrada e múltiplos atendentes.</p>
+        <div class="fcard-tags">
+          <span class="tag">Clínicas</span>
+          <span class="tag">Imobiliárias</span>
+          <span class="tag">E-commerce</span>
+          <span class="tag">Prestadores</span>
+        </div>
+        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 5 dias úteis · n8n + Evolution API + IA</p>
+        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Tenho%20interesse%20no%20chatbot%20para%20WhatsApp." target="_blank">Quero meu chatbot →</a>
+      </div>
+
+      <div class="fcard">
+        <span class="fcard-badge badge-fast">Resolução rápida</span>
+        <div class="fcard-icon icon-cyan">🖥️</div>
+        <h3>Servidor e VPS em Produção</h3>
+        <p>Site fora do ar, sistema lento ou VPS sem configuração? Configuro, otimizo e entrego rodando com SSL, backup e monitoramento.</p>
+        <div class="fcard-tags">
+          <span class="tag">Ubuntu</span>
+          <span class="tag">Nginx</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Docker</span>
+          <span class="tag">AWS</span>
+        </div>
+        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 1 dia útil · SSL · PM2 · UFW</p>
+        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Preciso%20de%20ajuda%20com%20meu%20servidor%20VPS." target="_blank">Solicitar configuração →</a>
+      </div>
+
+      <div class="fcard">
+        <span class="fcard-badge badge-cost">Reduz custo operacional</span>
+        <div class="fcard-icon icon-blue">⚡</div>
+        <h3>Automações e Integrações</h3>
+        <p>Elimine tarefas manuais repetitivas com automações que funcionam 24h. Integro sistemas, crio fluxos e dashboards de controle.</p>
+        <div class="fcard-tags">
+          <span class="tag">n8n</span>
+          <span class="tag">APIs REST</span>
+          <span class="tag">Google Workspace</span>
+          <span class="tag">CRMs</span>
+        </div>
+        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 3 dias úteis · Planilhas · ERPs · WA API</p>
+        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Quero%20automatizar%20um%20processo%20da%20minha%20empresa." target="_blank">Automatizar meu processo →</a>
+      </div>
+
+      <div class="fcard">
+        <span class="fcard-badge badge-rec">Recorrência mensal</span>
+        <div class="fcard-icon icon-amber">📈</div>
+        <h3>Tráfego Pago (Meta e Google Ads)</h3>
+        <p>Campanhas gerenciadas com foco em resultado real: leads qualificados, vendas e presença digital. Relatórios mensais e otimização contínua.</p>
+        <div class="fcard-tags">
+          <span class="tag">Meta Ads</span>
+          <span class="tag">Google Ads</span>
+          <span class="tag">Remarketing</span>
+          <span class="tag">Geração de leads</span>
+        </div>
+        <p class="fcard-meta"><strong>Modelo:</strong> contrato mensal · Negócios locais · Infoprodutos</p>
+        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Tenho%20interesse%20em%20gestão%20de%20tráfego%20pago." target="_blank">Quero mais clientes →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- OTHER SERVICES -->
+<section class="other-services">
+  <div class="section-inner">
+    <p class="section-label">Outros serviços</p>
+    <h2 class="section-title">Mais do que posso entregar</h2>
+    <p class="section-sub">Portfólio completo para empresas, escolas e negócios de todos os portes.</p>
+    <div class="services-grid reveal">
+      <div class="scard">
+        <div class="scard-icon">🔧</div>
+        <h4>Infraestrutura & Redes</h4>
+        <ul>
+          <li>Windows Server · AD · GPO · DHCP/DNS</li>
+          <li>Virtualização com Proxmox VE</li>
+          <li>Redes corporativas pfSense · UniFi · VLANs</li>
+          <li>Monitoramento Zabbix + Grafana</li>
+          <li>Backup e segurança da informação</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-icon">☁️</div>
+        <h4>Cloud & DevOps</h4>
+        <ul>
+          <li>Migração de cargas para AWS</li>
+          <li>Containerização com Docker</li>
+          <li>CI/CD e repositórios GitHub Actions</li>
+          <li>Consultoria de modernização</li>
+          <li>Infraestrutura como código</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-icon">💻</div>
+        <h4>Desenvolvimento de Sistemas</h4>
+        <ul>
+          <li>Sistemas web personalizados</li>
+          <li>Gestão para igrejas, escolas e empresas</li>
+          <li>Portais e dashboards administrativos</li>
+          <li>Sistemas de agendamento e doação</li>
+          <li>Scripts PowerShell e Bash</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-icon">🖥️</div>
+        <h4>Totens & Soluções Interativas</h4>
+        <ul>
+          <li>Totens de autoatendimento e senhas</li>
+          <li>Catálogos digitais interativos</li>
+          <li>Check-in e pesquisa de satisfação</li>
+          <li>Painéis informativos</li>
+          <li>Lousas para escolas e organizações</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-icon">🛠️</div>
+        <h4>Assistência Técnica (Salvador/BA)</h4>
+        <ul>
+          <li>Manutenção de computadores e notebooks</li>
+          <li>Formatação e instalação de sistemas</li>
+          <li>Upgrade SSD e memória RAM</li>
+          <li>Configuração de redes</li>
+          <li>Suporte remoto para qualquer estado</li>
+        </ul>
+      </div>
+      <div class="scard">
+        <div class="scard-icon">🚀</div>
+        <h4>Marketing Digital & Presença Online</h4>
+        <ul>
+          <li>Tráfego pago Meta Ads (Instagram e Facebook)</li>
+          <li>Meta Business · Google Ads</li>
+          <li>Registro da empresa no Google</li>
+          <li>Criação de sites e landing pages</li>
+          <li>Registro de domínios</li>
+          <li>Criação de SaaS sob medida</li>
+          <li>E-mail profissional com domínio próprio — ex: <em>contato@suaempresa.com.br</em> em vez de Gmail ou Hotmail</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="section-inner">
+    <p class="section-label">Portfólio</p>
+    <h2 class="section-title">Projetos em produção real</h2>
+    <p class="section-sub">Trabalhos entregues com resultado documentado.</p>
+    <div class="portfolio-grid reveal">
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">Escolas</span></div>
+        <h4>Credenciais institucionais em escala</h4>
+        <p>Geração e gestão de credenciais para 400+ alunos com cartões PDF personalizados, QR codes e integração com Google Workspace.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Cloud</span><span class="ptag">Linux</span><span class="ptag">DevOps</span></div>
+        <h4>VPS completo em produção</h4>
+        <p>Provisionamento Ubuntu com Nginx, Node.js, MySQL, PM2, UFW e Let's Encrypt SSL. Ambiente estável em produção real.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">Sistemas Web</span></div>
+        <h4>Sistema de gestão institucional</h4>
+        <p>Sistema web sob medida para controle de membros, doações e comunicação interna de organização religiosa.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">PowerShell</span><span class="ptag">Bash</span></div>
+        <h4>Scripts de diagnóstico de infraestrutura</h4>
+        <p>Scripts que geram relatórios HTML automáticos para triagem de incidentes em ambientes corporativos.</p>
+        <a href="https://github.com/brunoalvestech" target="_blank">github.com/brunoalvestech ↗</a>
+      </div>
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">React</span><span class="ptag">CRM</span></div>
+        <h4>CRM de prospecção escolar</h4>
+        <p>Ferramenta React com cadência de 21 dias e 5 touchpoints para gestão de contatos de escolas privadas.</p>
+      </div>
+      <div class="pcard">
+        <div class="pcard-tags"><span class="ptag">Infraestrutura</span><span class="ptag">Redes</span></div>
+        <h4>TI para instituição de ensino</h4>
+        <p>Gestão de ambiente com 1.300+ usuários, incluindo AD, GPO, DHCP/DNS, laboratórios e suporte continuado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack-section">
+  <div class="section-inner">
+    <p class="section-label">Stack técnico</p>
+    <h2 class="section-title">Tecnologias que uso em produção</h2>
+    <div class="stack-grid reveal">
+      <div class="stack-block">
+        <h4>Infraestrutura</h4>
+        <ul>
+          <li>Windows Server</li>
+          <li>Linux · Ubuntu</li>
+          <li>Proxmox VE</li>
+          <li>pfSense</li>
+          <li>UniFi</li>
+          <li>Zabbix · Grafana</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>Cloud & DevOps</h4>
+        <ul>
+          <li>AWS</li>
+          <li>Docker</li>
+          <li>Nginx · PM2</li>
+          <li>GitHub Actions</li>
+          <li>Let's Encrypt</li>
+          <li>UFW · SSH</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>Desenvolvimento</h4>
+        <ul>
+          <li>Node.js</li>
+          <li>React</li>
+          <li>MySQL · PostgreSQL</li>
+          <li>PowerShell · Bash</li>
+          <li>n8n · Evolution API</li>
+          <li>REST APIs</li>
+        </ul>
+      </div>
+      <div class="stack-block">
+        <h4>Redes & AD</h4>
+        <ul>
+          <li>TCP/IP · VLANs</li>
+          <li>DHCP · DNS</li>
+          <li>Active Directory</li>
+          <li>GPO</li>
+          <li>Wi-Fi corporativo</li>
+          <li>VPN · Firewall</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="section-inner">
+    <div class="sobre-inner reveal">
+      <div class="sobre-text">
+        <p class="section-label">Sobre</p>
+        <h2 class="section-title">Bruno Alves</h2>
+        <p>Analista de TI com atuação em <strong>infraestrutura corporativa, administração de servidores, desenvolvimento de sistemas web e automação de processos</strong>. Com experiência em ambientes de produção que atendem centenas de usuários.</p>
+        <p>Atua na implantação e gerenciamento de <strong>redes corporativas, servidores Windows e Linux, virtualização, cloud computing</strong> e monitoramento de ambientes críticos.</p>
+        <p>Além da infraestrutura, desenvolve sistemas personalizados, portais administrativos, integrações, chatbots para WhatsApp e soluções interativas para <strong>empresas, escolas, igrejas e órgãos públicos</strong>.</p>
+        <p>Não terceirizo. Não enrolo. <strong>Você fala diretamente comigo.</strong></p>
+        <div class="badges">
+          <span class="cbadge">CCNA Switching & Routing</span>
+          <span class="cbadge">AWS Cloud Foundations</span>
+<span class="cbadge active">Disponível para novos projetos</span>
+        </div>
+        <div class="contact-grid" style="margin-top:24px">
+          <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571997362588" target="_blank">(71) 99736-2588</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571981230424" target="_blank">(71) 98123-0424</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:suporte.brunoalves@gmail.com">suporte.brunoalves@gmail.com</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:bruno.alves@uptechst.com.br">bruno.alves@uptechst.com.br</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#06B6D4"></span><a href="https://linkedin.com/in/brunoalvestech" target="_blank">linkedin.com/in/brunoalvestech</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#7a8599"></span><a href="https://github.com/brunoalvestech" target="_blank">github.com/brunoalvestech</a></div>
+        </div>
+      </div>
+      <div class="sobre-quote">
+        <blockquote>"Ajudo organizações a modernizar processos, reduzir custos e aumentar eficiência com soluções tecnológicas confiáveis, seguras e escaláveis."</blockquote>
+        <p class="quote-sub">Bruno Alves · Analista de TI · Camaçari / Salvador, BA<br>Atendimento remoto para todo o Brasil · Presencial na Grande Salvador</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVERSION -->
+<section class="conversion" id="contato">
+  <div class="section-inner">
+    <div class="conversion-inner reveal">
+      <h2>Tem um projeto em mente?</h2>
+      <p>Me manda uma mensagem no WhatsApp. Sem formulário, sem espera — eu respondo pessoalmente e a gente resolve.</p>
+      <a class="btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Chamar no WhatsApp
+      </a>
+      <p class="reply">Respondo em até <span>2 horas</span> em dias úteis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-left">
+      <strong>@brunoalvestech</strong> · Bruno Alves · Analista de TI · Salvador, BA<br>
+      <span style="font-size:12px">(71) 99736-2588 · (71) 98123-0424 · suporte.brunoalves@gmail.com · brunoalvestech.com.br</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
+      <a href="https://github.com/brunoalvestech" target="_blank">GitHub</a>
+      <a href="https://www.instagram.com/uptech_st/" target="_blank">Instagram</a>
+      <a href="https://wa.me/5571981230424" target="_blank">WhatsApp</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WA -->
+<a class="wa-float" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank" aria-label="Falar no WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => io.observe(el));
+
+// Mobile menu
+function toggleMenu() {
+  const links = document.querySelector('.nav-links');
+  const cta = document.querySelector('.nav-cta');
+  if (links.style.display === 'flex') {
+    links.style.display = '';
+    cta.style.display = '';
+  } else {
+    links.style.display = 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position = 'absolute';
+    links.style.top = '64px';
+    links.style.left = '0';
+    links.style.right = '0';
+    links.style.background = '#0e1420';
+    links.style.padding = '20px 5%';
+    links.style.borderBottom = '1px solid rgba(255,255,255,0.07)';
+    cta.style.display = 'block';
+    cta.style.position = 'absolute';
+    cta.style.top = '160px';
+    cta.style.left = '5%';
+  }
+}
+</script>
+</body>
+</html>
