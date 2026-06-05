@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bruno Alves · Analista de TI · Infraestrutura, Sistemas e Automações</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -20,38 +20,170 @@
   --muted:#7a8599;
   --border:rgba(255,255,255,0.07);
   --r:12px;
+  --announce-h:40px;
+  --nav-h:64px;
+  --offset:104px; /* announce + nav */
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 
+/* ANNOUNCE BAR */
+.announce{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  background:rgba(59,130,246,0.12);
+  border-bottom:1px solid rgba(59,130,246,0.22);
+  padding:0 5%;
+  height:var(--announce-h);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12.5px;color:var(--text);line-height:1.4;
+  text-align:center;
+}
+.announce a{color:var(--green);font-weight:500;text-decoration:none;white-space:nowrap;margin-left:4px}
+.announce a:hover{text-decoration:underline}
+
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(8,12,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);text-decoration:none;letter-spacing:0}
+nav{
+  position:fixed;
+  top:var(--announce-h);
+  left:0;right:0;
+  z-index:100;
+  height:var(--nav-h);
+  padding:0 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(8,12,18,0.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
 .nav-logo span{color:var(--blue)}
-.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
 .nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:400;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{background:var(--green);color:#fff;border:none;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;text-decoration:none;transition:opacity .2s;font-family:'DM Sans',sans-serif}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-cta{
+  background:var(--green);color:#fff;border:none;
+  padding:8px 18px;border-radius:8px;
+  font-size:13px;font-weight:500;cursor:pointer;
+  text-decoration:none;transition:opacity .2s;
+  font-family:'DM Sans',sans-serif;white-space:nowrap;
+}
 .nav-cta:hover{opacity:.88}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+
+/* HAMBURGER */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;
+  gap:5px;cursor:pointer;background:none;border:none;
+  padding:6px;width:36px;height:36px;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text);border-radius:2px;
+  transition:all .3s;transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* MOBILE MENU OVERLAY */
+.mobile-menu{
+  display:none;
+  position:fixed;
+  top:calc(var(--announce-h) + var(--nav-h));
+  left:0;right:0;
+  background:rgba(8,12,18,0.98);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:24px 5% 28px;
+  z-index:99;
+  flex-direction:column;
+  gap:4px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  color:var(--text);text-decoration:none;
+  font-size:18px;font-family:'Syne',sans-serif;font-weight:600;
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+  display:block;
+  transition:color .2s;
+}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:var(--blue)}
+.mobile-menu .m-cta{
+  margin-top:16px;
+  background:var(--green);color:#fff;
+  text-align:center;padding:14px 24px;
+  border-radius:var(--r);font-size:15px;font-weight:500;
+  border-bottom:none !important;
+}
+.mobile-menu .m-cta:hover{color:#fff;opacity:.9}
+
+/* SPACER FOR FIXED NAV+ANNOUNCE */
+.top-spacer{height:var(--offset)}
 
 /* HERO */
-.hero{min-height:100vh;display:flex;align-items:center;padding:140px 5% 80px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);pointer-events:none}
-.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);pointer-events:none}
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:calc(var(--offset) + 60px) 5% 80px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;top:-200px;right:-200px;
+  width:700px;height:700px;
+  background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-100px;left:-100px;
+  width:500px;height:500px;
+  background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%}
-.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:var(--blue);font-size:11px;font-weight:500;padding:5px 13px;border-radius:100px;margin-bottom:28px;letter-spacing:.3px;text-transform:uppercase}
-.hero-tag::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse-dot 2s infinite}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);
+  color:var(--blue);font-size:11px;font-weight:500;
+  padding:5px 13px;border-radius:100px;margin-bottom:28px;
+  letter-spacing:.3px;text-transform:uppercase;
+}
+.hero-tag::before{
+  content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;
+  animation:pulse-dot 2s infinite;flex-shrink:0;
+}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.hero h1{font-family:'Syne',sans-serif;font-size:clamp(30px,4vw,54px);font-weight:700;line-height:1.15;letter-spacing:-0.5px;margin-bottom:20px}
+.hero h1{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(28px,5vw,54px);
+  font-weight:700;line-height:1.12;
+  letter-spacing:-0.5px;margin-bottom:20px;
+}
 .hero h1 .line2{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.22)}
 .hero h1 .accent{color:var(--blue)}
-.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:36px;font-weight:400}
+.hero-sub{
+  font-size:clamp(14px,1.6vw,17px);color:var(--muted);
+  max-width:540px;line-height:1.7;margin-bottom:36px;font-weight:400;
+}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
-.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:12px 24px;border-radius:var(--r);font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;font-family:'DM Sans',sans-serif}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--green);color:#fff;
+  padding:12px 24px;border-radius:var(--r);
+  font-weight:500;font-size:14px;text-decoration:none;
+  transition:all .2s;font-family:'DM Sans',sans-serif;
+  white-space:nowrap;
+}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3)}
-.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);border:1px solid var(--border);padding:12px 22px;border-radius:var(--r);font-weight:400;font-size:14px;text-decoration:none;transition:all .2s}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);padding:12px 22px;
+  border-radius:var(--r);font-weight:400;font-size:14px;
+  text-decoration:none;transition:all .2s;white-space:nowrap;
+}
 .btn-secondary:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03)}
 .hero-stats{display:flex;gap:36px;flex-wrap:wrap}
 .stat{display:flex;flex-direction:column}
@@ -68,11 +200,24 @@ section{padding:80px 5%}
 /* FEATURED SERVICES */
 .featured{background:var(--bg)}
 .featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.fcard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
+.fcard{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:16px;padding:32px;
+  position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
 .fcard:hover{border-color:rgba(59,130,246,0.35);transform:translateY(-3px)}
-.fcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));opacity:0;transition:opacity .3s}
+.fcard::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--blue),var(--cyan));
+  opacity:0;transition:opacity .3s;
+}
 .fcard:hover::before{opacity:1}
-.fcard-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:16px}
+.fcard-badge{
+  display:inline-block;font-size:9px;font-weight:600;
+  letter-spacing:.8px;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;margin-bottom:16px;
+}
 .badge-demand{background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.3)}
 .badge-fast{background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid rgba(6,182,212,0.3)}
 .badge-cost{background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3)}
@@ -123,7 +268,7 @@ section{padding:80px 5%}
 
 /* SOBRE */
 .sobre{background:var(--bg)}
-.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
 .sobre-text p{color:var(--muted);line-height:1.8;margin-bottom:14px;font-size:14px}
 .sobre-text p strong{color:var(--text)}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
@@ -131,7 +276,14 @@ section{padding:80px 5%}
 .cbadge.active{background:rgba(37,211,102,0.08);border-color:rgba(37,211,102,0.2);color:var(--green)}
 .sobre-quote{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:28px}
 .sobre-quote blockquote{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-0.1px;color:var(--text);margin-bottom:14px}
-.sobre-quote .quote-sub{color:var(--muted);font-size:13px}
+.sobre-quote .quote-sub{color:var(--muted);font-size:13px;line-height:1.6}
+
+/* CONTACT GRID */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
+.contact-item{display:flex;align-items:center;gap:10px;font-size:13px;min-width:0}
+.contact-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.contact-item a{color:var(--muted);text-decoration:none;transition:color .2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;display:block}
+.contact-item a:hover{color:var(--text)}
 
 /* CONVERSION */
 .conversion{background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(6,182,212,0.05) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -143,47 +295,77 @@ section{padding:80px 5%}
 
 /* FOOTER */
 footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:gap}
-.footer-left{font-size:13px;color:var(--muted)}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-left{font-size:13px;color:var(--muted);line-height:1.7}
 .footer-left strong{color:var(--text)}
-.footer-links{display:flex;gap:20px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
 .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s}
 .footer-links a:hover{color:var(--text)}
 
 /* FLOATING WA */
-.wa-float{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform .2s}
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:200;
+  width:56px;height:56px;
+  background:var(--green);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  text-decoration:none;transition:transform .2s;
+}
 .wa-float:hover{transform:scale(1.08)}
-.wa-float::before{content:'';position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(37,211,102,0.4);animation:wa-ring 2.5s infinite}
+.wa-float::before{
+  content:'';position:absolute;
+  width:56px;height:56px;border-radius:50%;
+  background:rgba(37,211,102,0.4);
+  animation:wa-ring 2.5s infinite;
+}
 @keyframes wa-ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
 .wa-float svg{position:relative;z-index:1}
 
-/* ANNOUNCEMENT BAR */
-.announce{background:rgba(59,130,246,0.1);border-bottom:1px solid rgba(59,130,246,0.2);padding:10px 5%;text-align:center;font-size:13px;color:var(--text);line-height:1.5}
-.announce a{color:var(--green);font-weight:500;text-decoration:none;white-space:nowrap}
-.announce a:hover{text-decoration:underline}
-
-/* CONTACT GRID */
-.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
-.contact-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
-.contact-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
-.contact-item a{color:var(--muted);text-decoration:none;transition:color .2s}
-.contact-item a:hover{color:var(--text)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* RESPONSIVE */
+/* SCROLL-TO-TOP anchor fix */
+html{scroll-padding-top:var(--offset)}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
 @media(max-width:900px){
+  :root{--announce-h:44px;--offset:108px}
   .featured-grid,.portfolio-grid{grid-template-columns:1fr}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .stack-grid{grid-template-columns:repeat(2,1fr)}
-  .sobre-inner{grid-template-columns:1fr}
-  .nav-links,.nav-cta{display:none}
+  .sobre-inner{grid-template-columns:1fr;gap:32px}
+  .nav-links,.nav-right .nav-cta{display:none}
   .hamburger{display:flex}
   .footer-inner{flex-direction:column;gap:16px;text-align:center}
+  .footer-links{justify-content:center}
 }
-@media(max-width:560px){
+
+@media(max-width:640px){
+  :root{--announce-h:52px;--offset:116px}
+  .announce{font-size:11.5px;padding:0 4%}
+  .announce a{display:block;white-space:normal}
+  section{padding:60px 5%}
+  .hero{padding-top:calc(var(--offset) + 40px);padding-bottom:60px;min-height:auto}
+  .hero h1{font-size:clamp(26px,8vw,38px)}
+  .hero-stats{gap:20px}
+  .stat-num{font-size:20px}
   .services-grid,.stack-grid{grid-template-columns:1fr}
-  .hero-stats{gap:24px}
+  .contact-grid{grid-template-columns:1fr}
+  .featured-grid{grid-template-columns:1fr}
+  .fcard{padding:24px}
+  .hero-actions{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-secondary{width:100%;justify-content:center}
+  .sobre-quote blockquote{font-size:15px}
+  .wa-float{bottom:20px;right:16px;width:50px;height:50px}
+  .wa-float::before{width:50px;height:50px}
+}
+
+@media(max-width:380px){
+  :root{--announce-h:56px;--offset:120px}
+  .hero h1{font-size:24px}
 }
 </style>
 </head>
@@ -191,7 +373,7 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce">
-  Precisa de suporte, infraestrutura, automação ou desenvolvimento? <a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Gostaria%20de%20uma%20análise%20inicial%20sem%20compromisso." target="_blank">Me envie uma mensagem no WhatsApp e receba uma análise inicial sem compromisso →</a>
+  Suporte, infraestrutura, automação ou desenvolvimento?<a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Gostaria%20de%20uma%20análise%20inicial%20sem%20compromisso." target="_blank">WhatsApp para análise sem compromisso →</a>
 </div>
 
 <!-- NAV -->
@@ -203,11 +385,22 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
     <li><a href="#sobre">Sobre</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
-  <a class="nav-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">WhatsApp</a>
-  <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <div class="nav-right">
+    <a class="nav-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">WhatsApp</a>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#servicos" class="menu-link">Serviços</a>
+  <a href="#portfolio" class="menu-link">Portfólio</a>
+  <a href="#sobre" class="menu-link">Sobre</a>
+  <a href="#contato" class="menu-link">Contato</a>
+  <a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="m-cta">💬 Falar no WhatsApp</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -374,13 +567,12 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
         <div class="scard-icon">🚀</div>
         <h4>Marketing Digital & Presença Online</h4>
         <ul>
-          <li>Tráfego pago Meta Ads (Instagram e Facebook)</li>
-          <li>Meta Business · Google Ads</li>
+          <li>Tráfego pago Meta Ads e Google Ads</li>
           <li>Registro da empresa no Google</li>
           <li>Criação de sites e landing pages</li>
           <li>Registro de domínios</li>
+          <li>E-mail profissional com domínio próprio</li>
           <li>Criação de SaaS sob medida</li>
-          <li>E-mail profissional com domínio próprio — ex: <em>contato@suaempresa.com.br</em> em vez de Gmail ou Hotmail</li>
         </ul>
       </div>
     </div>
@@ -497,15 +689,15 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
         <div class="badges">
           <span class="cbadge">CCNA Switching & Routing</span>
           <span class="cbadge">AWS Cloud Foundations</span>
-<span class="cbadge active">Disponível para novos projetos</span>
+          <span class="cbadge active">Disponível para novos projetos</span>
         </div>
-        <div class="contact-grid" style="margin-top:24px">
+        <div class="contact-grid">
           <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571997362588" target="_blank">(71) 99736-2588</a></div>
           <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571981230424" target="_blank">(71) 98123-0424</a></div>
           <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:suporte.brunoalves@gmail.com">suporte.brunoalves@gmail.com</a></div>
           <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:bruno.alves@uptechst.com.br">bruno.alves@uptechst.com.br</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#06B6D4"></span><a href="https://linkedin.com/in/brunoalvestech" target="_blank">linkedin.com/in/brunoalvestech</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#7a8599"></span><a href="https://github.com/brunoalvestech" target="_blank">github.com/brunoalvestech</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#06B6D4"></span><a href="https://linkedin.com/in/brunoalvestech" target="_blank">linkedin/brunoalvestech</a></div>
+          <div class="contact-item"><span class="contact-dot" style="background:#7a8599"></span><a href="https://github.com/brunoalvestech" target="_blank">github/brunoalvestech</a></div>
         </div>
       </div>
       <div class="sobre-quote">
@@ -536,7 +728,7 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
   <div class="footer-inner">
     <div class="footer-left">
       <strong>@brunoalvestech</strong> · Bruno Alves · Analista de TI · Salvador, BA<br>
-      <span style="font-size:12px">(71) 99736-2588 · (71) 98123-0424 · suporte.brunoalves@gmail.com · brunoalvestech.com.br</span>
+      <span style="font-size:12px">(71) 99736-2588 · (71) 98123-0424 · suporte.brunoalves@gmail.com</span>
     </div>
     <div class="footer-links">
       <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
@@ -549,45 +741,66 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
 
 <!-- FLOATING WA -->
 <a class="wa-float" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank" aria-label="Falar no WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-// Scroll reveal
+/* =========================================
+   MOBILE MENU — sem inline styles, sem bugs
+   ========================================= */
+const btn = document.getElementById('hamburgerBtn');
+const menu = document.getElementById('mobileMenu');
+
+function openMenu() {
+  menu.classList.add('open');
+  btn.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  menu.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMenu() {
+  menu.classList.remove('open');
+  btn.classList.remove('open');
+  btn.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+btn.addEventListener('click', () => {
+  menu.classList.contains('open') ? closeMenu() : openMenu();
+});
+
+// Fechar ao clicar em link de menu
+document.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('click', closeMenu);
+});
+
+// Fechar ao clicar fora
+document.addEventListener('click', (e) => {
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+    closeMenu();
+  }
+});
+
+// Fechar com ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+});
+
+/* =========================================
+   SCROLL REVEAL
+   ========================================= */
 const reveals = document.querySelectorAll('.reveal');
 const io = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
+  entries.forEach(e => {
     if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      e.target.classList.add('visible');
       io.unobserve(e.target);
     }
   });
-}, { threshold: 0.1 });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 reveals.forEach(el => io.observe(el));
-
-// Mobile menu
-function toggleMenu() {
-  const links = document.querySelector('.nav-links');
-  const cta = document.querySelector('.nav-cta');
-  if (links.style.display === 'flex') {
-    links.style.display = '';
-    cta.style.display = '';
-  } else {
-    links.style.display = 'flex';
-    links.style.flexDirection = 'column';
-    links.style.position = 'absolute';
-    links.style.top = '64px';
-    links.style.left = '0';
-    links.style.right = '0';
-    links.style.background = '#0e1420';
-    links.style.padding = '20px 5%';
-    links.style.borderBottom = '1px solid rgba(255,255,255,0.07)';
-    cta.style.display = 'block';
-    cta.style.position = 'absolute';
-    cta.style.top = '160px';
-    cta.style.left = '5%';
-  }
-}
 </script>
 </body>
 </html>
