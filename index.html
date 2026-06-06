@@ -3,231 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bruno Alves · Analista de TI · Infraestrutura, Sistemas e Automações</title>
+<title>Bruno Alves · Analista de TI & UPTECH Soluções Tecnológicas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#080c12;
-  --bg2:#0e1420;
-  --bg3:#131b28;
-  --blue:#3B82F6;
-  --cyan:#06B6D4;
-  --amber:#F59E0B;
-  --green:#25D366;
-  --text:#e8edf5;
-  --muted:#7a8599;
-  --border:rgba(255,255,255,0.07);
-  --r:12px;
-  --announce-h:40px;
-  --nav-h:64px;
-  --offset:104px; /* announce + nav */
+  --bg:#080c12;--bg2:#0e1420;--bg3:#131b28;
+  --blue:#3B82F6;--cyan:#06B6D4;--amber:#F59E0B;--green:#25D366;--red:#EF4444;
+  --text:#e8edf5;--muted:#7a8599;
+  --border:rgba(255,255,255,0.07);--r:12px;
+  --announce-h:40px;--nav-h:64px;--offset:104px;
 }
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:var(--offset)}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
 
-/* ANNOUNCE BAR */
-.announce{
-  position:fixed;top:0;left:0;right:0;z-index:110;
-  background:rgba(59,130,246,0.12);
-  border-bottom:1px solid rgba(59,130,246,0.22);
-  padding:0 5%;
-  height:var(--announce-h);
-  display:flex;align-items:center;justify-content:center;
-  font-size:12.5px;color:var(--text);line-height:1.4;
-  text-align:center;
-}
+/* ── ANNOUNCE ── */
+.announce{position:fixed;top:0;left:0;right:0;z-index:110;background:rgba(59,130,246,0.12);border-bottom:1px solid rgba(59,130,246,0.22);padding:0 5%;height:var(--announce-h);display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--text);line-height:1.4;text-align:center}
 .announce a{color:var(--green);font-weight:500;text-decoration:none;white-space:nowrap;margin-left:4px}
 .announce a:hover{text-decoration:underline}
 
-/* NAV */
-nav{
-  position:fixed;
-  top:var(--announce-h);
-  left:0;right:0;
-  z-index:100;
-  height:var(--nav-h);
-  padding:0 5%;
-  display:flex;justify-content:space-between;align-items:center;
-  background:rgba(8,12,18,0.92);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);text-decoration:none}
+/* ── NAV ── */
+nav{position:fixed;top:var(--announce-h);left:0;right:0;z-index:100;height:var(--nav-h);padding:0 5%;display:flex;justify-content:space-between;align-items:center;background:rgba(8,12,18,0.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:var(--text);text-decoration:none;cursor:pointer}
 .nav-logo span{color:var(--blue)}
-.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:400;transition:color .2s}
+.nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
-.nav-right{display:flex;align-items:center;gap:16px}
-.nav-cta{
-  background:var(--green);color:#fff;border:none;
-  padding:8px 18px;border-radius:8px;
-  font-size:13px;font-weight:500;cursor:pointer;
-  text-decoration:none;transition:opacity .2s;
-  font-family:'DM Sans',sans-serif;white-space:nowrap;
-}
+.nav-right{display:flex;align-items:center;gap:10px}
+/* site switcher */
+.switcher{display:flex;gap:4px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:9px;padding:3px}
+.sw-btn{background:none;border:none;color:var(--muted);font-size:11px;font-weight:500;padding:5px 11px;border-radius:6px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif;white-space:nowrap}
+.sw-btn.active{background:var(--blue);color:#fff}
+.nav-cta{background:var(--green);color:#fff;padding:8px 18px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:opacity .2s;white-space:nowrap;border:none;font-family:'DM Sans',sans-serif;cursor:pointer}
 .nav-cta:hover{opacity:.88}
 
-/* HAMBURGER */
-.hamburger{
-  display:none;flex-direction:column;justify-content:center;
-  gap:5px;cursor:pointer;background:none;border:none;
-  padding:6px;width:36px;height:36px;
-}
-.hamburger span{
-  display:block;width:22px;height:2px;
-  background:var(--text);border-radius:2px;
-  transition:all .3s;transform-origin:center;
-}
+/* ── HAMBURGER ── */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:6px;width:36px;height:36px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;transform-origin:center}
 .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-/* MOBILE MENU OVERLAY */
-.mobile-menu{
-  display:none;
-  position:fixed;
-  top:calc(var(--announce-h) + var(--nav-h));
-  left:0;right:0;
-  background:rgba(8,12,18,0.98);
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  padding:24px 5% 28px;
-  z-index:99;
-  flex-direction:column;
-  gap:4px;
-}
+/* ── MOBILE MENU ── */
+.mobile-menu{display:none;position:fixed;top:calc(var(--announce-h) + var(--nav-h));left:0;right:0;background:rgba(8,12,18,0.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:20px 5% 24px;z-index:99;flex-direction:column;gap:4px}
 .mobile-menu.open{display:flex}
-.mobile-menu a{
-  color:var(--text);text-decoration:none;
-  font-size:18px;font-family:'Syne',sans-serif;font-weight:600;
-  padding:12px 0;
-  border-bottom:1px solid var(--border);
-  display:block;
-  transition:color .2s;
-}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu a:hover{color:var(--blue)}
-.mobile-menu .m-cta{
-  margin-top:16px;
-  background:var(--green);color:#fff;
-  text-align:center;padding:14px 24px;
-  border-radius:var(--r);font-size:15px;font-weight:500;
-  border-bottom:none !important;
-}
-.mobile-menu .m-cta:hover{color:#fff;opacity:.9}
+.mobile-menu a,.mobile-menu button.mlink{color:var(--text);text-decoration:none;font-size:17px;font-family:'Syne',sans-serif;font-weight:600;padding:11px 0;border-bottom:1px solid var(--border);display:block;transition:color .2s;background:none;border-left:none;border-right:none;border-top:none;text-align:left;cursor:pointer;width:100%}
+.mobile-menu a:last-child,.mobile-menu button:last-child{border-bottom:none}
+.mobile-menu a:hover,.mobile-menu button.mlink:hover{color:var(--blue)}
+.mobile-menu .m-section{font-size:10px;color:var(--blue);text-transform:uppercase;letter-spacing:1px;font-weight:600;padding:12px 0 4px;border-bottom:none;font-family:'DM Sans',sans-serif}
+.mobile-menu .m-cta{margin-top:14px;background:var(--green);color:#fff;text-align:center;padding:13px 24px;border-radius:var(--r);font-size:15px;font-weight:500;border:none;border-bottom:none!important}
 
-/* SPACER FOR FIXED NAV+ANNOUNCE */
-.top-spacer{height:var(--offset)}
+/* ── PAGE SYSTEM ── */
+.page{display:none}
+.page.active{display:block}
 
-/* HERO */
-.hero{
-  min-height:100vh;
-  display:flex;align-items:center;
-  padding:calc(var(--offset) + 60px) 5% 80px;
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:'';position:absolute;top:-200px;right:-200px;
-  width:700px;height:700px;
-  background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);
-  pointer-events:none;
-}
-.hero::after{
-  content:'';position:absolute;bottom:-100px;left:-100px;
-  width:500px;height:500px;
-  background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);
-  pointer-events:none;
-}
+/* ── SECTIONS ── */
+section{padding:80px 5%}
+.sec-inner{max-width:1100px;margin:0 auto}
+.sec-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
+.sec-sub{color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:48px;font-size:15px}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:calc(var(--offset) + 60px) 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(59,130,246,0.08) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);pointer-events:none}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%}
-.hero-tag{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);
-  color:var(--blue);font-size:11px;font-weight:500;
-  padding:5px 13px;border-radius:100px;margin-bottom:28px;
-  letter-spacing:.3px;text-transform:uppercase;
-}
-.hero-tag::before{
-  content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;
-  animation:pulse-dot 2s infinite;flex-shrink:0;
-}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:var(--blue);font-size:11px;font-weight:500;padding:5px 13px;border-radius:100px;margin-bottom:28px;letter-spacing:.3px;text-transform:uppercase}
+.hero-tag::before{content:'';width:6px;height:6px;background:var(--blue);border-radius:50%;animation:pulse-dot 2s infinite;flex-shrink:0}
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
-.hero h1{
-  font-family:'Syne',sans-serif;
-  font-size:clamp(28px,5vw,54px);
-  font-weight:700;line-height:1.12;
-  letter-spacing:-0.5px;margin-bottom:20px;
-}
+.hero h1{font-family:'Syne',sans-serif;font-size:clamp(28px,5vw,54px);font-weight:700;line-height:1.12;letter-spacing:-0.5px;margin-bottom:20px}
 .hero h1 .line2{color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.22)}
 .hero h1 .accent{color:var(--blue)}
-.hero-sub{
-  font-size:clamp(14px,1.6vw,17px);color:var(--muted);
-  max-width:540px;line-height:1.7;margin-bottom:36px;font-weight:400;
-}
+.hero-sub{font-size:clamp(14px,1.6vw,17px);color:var(--muted);max-width:540px;line-height:1.7;margin-bottom:36px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:52px}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:9px;
-  background:var(--green);color:#fff;
-  padding:12px 24px;border-radius:var(--r);
-  font-weight:500;font-size:14px;text-decoration:none;
-  transition:all .2s;font-family:'DM Sans',sans-serif;
-  white-space:nowrap;
-}
+.btn-primary{display:inline-flex;align-items:center;gap:9px;background:var(--green);color:#fff;padding:12px 24px;border-radius:var(--r);font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;white-space:nowrap}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3)}
-.btn-secondary{
-  display:inline-flex;align-items:center;gap:8px;
-  background:transparent;color:var(--text);
-  border:1px solid var(--border);padding:12px 22px;
-  border-radius:var(--r);font-weight:400;font-size:14px;
-  text-decoration:none;transition:all .2s;white-space:nowrap;
-}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);border:1px solid var(--border);padding:12px 22px;border-radius:var(--r);font-weight:400;font-size:14px;text-decoration:none;transition:all .2s;white-space:nowrap;cursor:pointer}
 .btn-secondary:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03)}
 .hero-stats{display:flex;gap:36px;flex-wrap:wrap}
-.stat{display:flex;flex-direction:column}
-.stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
-.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+.stat-num{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;display:block;letter-spacing:-0.3px}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px;display:block}
 
-/* SECTION BASE */
-section{padding:80px 5%}
-.section-inner{max-width:1100px;margin:0 auto}
-.section-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.section-title{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
-.section-sub{color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:48px;font-size:15px}
-
-/* FEATURED SERVICES */
-.featured{background:var(--bg)}
-.featured-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.fcard{
-  background:var(--bg2);border:1px solid var(--border);
-  border-radius:16px;padding:32px;
-  position:relative;overflow:hidden;
-  transition:border-color .3s,transform .3s;
-}
+/* ── CARDS ── */
+.fcard{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
 .fcard:hover{border-color:rgba(59,130,246,0.35);transform:translateY(-3px)}
-.fcard::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  opacity:0;transition:opacity .3s;
-}
+.fcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));opacity:0;transition:opacity .3s}
 .fcard:hover::before{opacity:1}
-.fcard-badge{
-  display:inline-block;font-size:9px;font-weight:600;
-  letter-spacing:.8px;text-transform:uppercase;
-  padding:3px 9px;border-radius:100px;margin-bottom:16px;
-}
+.fcard-badge{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:100px;margin-bottom:16px}
 .badge-demand{background:rgba(245,158,11,0.15);color:var(--amber);border:1px solid rgba(245,158,11,0.3)}
 .badge-fast{background:rgba(6,182,212,0.15);color:var(--cyan);border:1px solid rgba(6,182,212,0.3)}
 .badge-cost{background:rgba(59,130,246,0.15);color:var(--blue);border:1px solid rgba(59,130,246,0.3)}
 .badge-rec{background:rgba(37,211,102,0.15);color:var(--green);border:1px solid rgba(37,211,102,0.3)}
 .fcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:20px}
-.icon-blue{background:rgba(59,130,246,0.12)}
-.icon-cyan{background:rgba(6,182,212,0.12)}
-.icon-amber{background:rgba(245,158,11,0.12)}
-.icon-green{background:rgba(37,211,102,0.12)}
-.fcard h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:600;margin-bottom:9px;letter-spacing:-0.1px}
+.icon-blue{background:rgba(59,130,246,0.12)}.icon-cyan{background:rgba(6,182,212,0.12)}.icon-amber{background:rgba(245,158,11,0.12)}.icon-green{background:rgba(37,211,102,0.12)}
+.fcard h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:600;margin-bottom:9px}
 .fcard p{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:16px}
 .fcard-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
 .tag{font-size:11px;color:var(--muted);background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:3px 10px;border-radius:100px}
@@ -236,39 +107,26 @@ section{padding:80px 5%}
 .fcard-cta{display:inline-flex;align-items:center;gap:8px;color:var(--blue);font-size:13px;font-weight:500;text-decoration:none;transition:gap .2s}
 .fcard-cta:hover{gap:12px}
 
-/* OTHER SERVICES */
-.other-services{background:var(--bg2)}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+/* ── GENERIC GRID CARDS ── */
 .scard{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border-color .25s}
 .scard:hover{border-color:rgba(255,255,255,0.12)}
-.scard-icon{font-size:18px;margin-bottom:12px}
-.scard h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;margin-bottom:8px;letter-spacing:0}
+.scard h4{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;margin-bottom:8px}
 .scard ul{list-style:none;color:var(--muted);font-size:12px;line-height:1.9}
 .scard ul li::before{content:'·  ';color:var(--blue)}
 .scard ul li em{color:var(--cyan);font-style:normal;font-weight:500}
-
-/* PORTFOLIO */
-.portfolio{background:var(--bg)}
-.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .pcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:12px;transition:border-color .25s}
 .pcard:hover{border-color:rgba(59,130,246,0.25)}
 .pcard-tags{display:flex;flex-wrap:wrap;gap:6px}
 .ptag{font-size:9px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;padding:3px 9px;border-radius:100px;background:rgba(59,130,246,0.1);color:var(--blue);border:1px solid rgba(59,130,246,0.2)}
-.pcard h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:600;letter-spacing:-0.1px}
+.pcard h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:600}
 .pcard p{color:var(--muted);font-size:13px;line-height:1.65}
 .pcard a{color:var(--cyan);font-size:12px;text-decoration:none;margin-top:auto}
 .pcard a:hover{text-decoration:underline}
-
-/* STACK */
-.stack-section{background:var(--bg2)}
-.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .stack-block{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:24px}
 .stack-block h4{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-bottom:12px}
 .stack-block ul{list-style:none;font-size:13px;color:var(--muted);line-height:1.9}
 
-/* SOBRE */
-.sobre{background:var(--bg)}
-.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+/* ── SOBRE ── */
 .sobre-text p{color:var(--muted);line-height:1.8;margin-bottom:14px;font-size:14px}
 .sobre-text p strong{color:var(--text)}
 .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
@@ -277,23 +135,113 @@ section{padding:80px 5%}
 .sobre-quote{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--r);padding:28px}
 .sobre-quote blockquote{font-family:'Syne',sans-serif;font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-0.1px;color:var(--text);margin-bottom:14px}
 .sobre-quote .quote-sub{color:var(--muted);font-size:13px;line-height:1.6}
-
-/* CONTACT GRID */
 .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:20px}
 .contact-item{display:flex;align-items:center;gap:10px;font-size:13px;min-width:0}
 .contact-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
 .contact-item a{color:var(--muted);text-decoration:none;transition:color .2s;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;display:block}
 .contact-item a:hover{color:var(--text)}
 
-/* CONVERSION */
-.conversion{background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(6,182,212,0.05) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+/* ── UPTECH SHARED ── */
+.up-hero{background:linear-gradient(155deg,#080c12 0%,#0a1120 70%,#080c12 100%);padding:calc(var(--offset) + 56px) 5% 52px;position:relative;overflow:hidden;min-height:92vh;display:flex;align-items:center}
+.up-hero::before{content:'';position:absolute;top:-80px;right:-80px;width:380px;height:380px;background:radial-gradient(circle,rgba(59,130,246,0.09) 0%,transparent 70%);pointer-events:none}
+.up-hero::after{content:'';position:absolute;bottom:-60px;left:-40px;width:260px;height:260px;background:radial-gradient(circle,rgba(6,182,212,0.06) 0%,transparent 70%);pointer-events:none}
+.up-hero-inner{max-width:1100px;margin:0 auto;width:100%}
+.up-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);color:var(--blue);font-size:10px;font-weight:600;padding:4px 12px;border-radius:100px;margin-bottom:20px;text-transform:uppercase;letter-spacing:.5px}
+.up-badge::before{content:'';width:5px;height:5px;background:var(--blue);border-radius:50%;animation:pulse-dot 2s infinite;flex-shrink:0}
+.up-hero h1{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,48px);font-weight:700;line-height:1.12;letter-spacing:-.4px;margin-bottom:16px}
+.up-hero h1 em{font-style:normal;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,0.2)}
+.up-hero h1 .ac{color:var(--blue)}
+.up-hero p{color:var(--muted);font-size:clamp(13px,1.5vw,16px);max-width:520px;line-height:1.75;margin-bottom:28px}
+.up-stats{display:flex;gap:32px;flex-wrap:wrap;padding-top:26px;border-top:1px solid var(--border)}
+
+/* ── SVC CARDS ── */
+.sol-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px;transition:border-color .25s}
+.sol-card:hover{border-color:rgba(59,130,246,0.3)}
+.sol-ic{font-size:20px;margin-bottom:10px}
+.sol-card h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;margin-bottom:7px}
+.sol-card ul{list-style:none;font-size:11.5px;color:var(--muted);line-height:2}
+.sol-card ul li::before{content:'· ';color:var(--blue)}
+.sol-card ul li em{color:var(--cyan);font-style:normal;font-weight:500}
+
+/* ── PROBLEM CARDS ── */
+.prob-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;font-size:12px;color:var(--muted);line-height:1.65}
+.prob-item strong{display:block;color:var(--text);font-size:12px;font-weight:500;margin-bottom:4px}
+.pdot{width:6px;height:6px;border-radius:50%;background:rgba(245,158,11,.7);display:inline-block;margin-right:6px;vertical-align:middle}
+.alert-box{background:rgba(245,158,11,0.05);border:1px solid rgba(245,158,11,0.2);border-radius:10px;padding:16px 20px;margin-top:20px;font-size:12px;color:var(--muted);line-height:1.7}
+.alert-box strong{color:var(--amber)}
+.alert-box-red{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,.2);border-radius:10px;padding:16px 20px;margin-top:20px;font-size:12px;color:var(--muted);line-height:1.7}
+.alert-box-red strong{color:#f87171}
+
+/* ── DIFFERENTIALS ── */
+.dif-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.dif-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:rgba(59,130,246,.15);line-height:1;margin-bottom:8px}
+.dif-card h4{font-family:'Syne',sans-serif;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.dif-card p{font-size:12px;color:var(--muted);line-height:1.65;margin:0}
+
+/* ── SLA ── */
+.sla-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center}
+.sla-badge{font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:100px;display:inline-block;margin-bottom:10px}
+.sc1{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+.sc2{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.25)}
+.sc3{background:rgba(37,211,102,.15);color:#4ade80;border:1px solid rgba(37,211,102,.25)}
+.sc4{background:rgba(59,130,246,.15);color:#60a5fa;border:1px solid rgba(59,130,246,.25)}
+.sla-card p{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.sla-time{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--text)}
+.sla-res{font-size:10px;color:var(--muted);margin-top:4px}
+
+/* ── PLANS ── */
+.price-note{background:rgba(59,130,246,.07);border:1px solid rgba(59,130,246,.15);border-radius:10px;padding:14px 20px;margin-bottom:24px;font-size:13px;color:var(--muted);line-height:1.7;text-align:center}
+.price-note a{color:var(--green);font-weight:500;text-decoration:none}
+.plan-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:24px;position:relative}
+.plan-card.feat{border-color:rgba(59,130,246,.4);background:rgba(59,130,246,.04)}
+.plan-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px}
+.plan-target{font-size:11px;color:var(--muted);line-height:1.55;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.plan-ul{list-style:none;font-size:11px;line-height:2.1}
+.plan-ul li.yes{color:var(--text)}
+.plan-ul li.yes::before{content:'✓  ';color:var(--green)}
+.plan-ul li.no{color:rgba(122,133,153,.35)}
+.plan-ul li.no::before{content:'—  '}
+.plan-badge{position:absolute;top:-1px;right:14px;background:var(--blue);color:#fff;font-size:9px;font-weight:600;padding:4px 10px;border-radius:0 0 8px 8px;letter-spacing:.4px;text-transform:uppercase}
+.plan-cta{display:block;text-align:center;margin-top:16px;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);color:var(--blue);font-size:12px;font-weight:500;padding:9px;border-radius:8px;text-decoration:none}
+.plan-card.feat .plan-cta{background:var(--green);border-color:var(--green);color:#fff}
+
+/* ── RESULTS TABLE ── */
+.res-table{width:100%;border-collapse:collapse;font-size:12px}
+.res-table th{text-align:left;font-size:10px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;padding:10px 14px;border-bottom:1px solid var(--border)}
+.res-table td{padding:10px 14px;border-bottom:1px solid var(--border);line-height:1.5;vertical-align:top}
+.res-table td:first-child{font-weight:500;color:var(--text);white-space:nowrap}
+.res-table td:nth-child(2){color:rgba(245,158,11,.8)}
+.res-table td:nth-child(3){color:var(--green)}
+
+/* ── PROCESS STEPS ── */
+.proc-item{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;text-align:center}
+.proc-num{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:rgba(59,130,246,.2);margin-bottom:6px}
+.proc-item h5{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.proc-item p{font-size:11px;color:var(--muted);line-height:1.55;margin:0}
+
+/* ── BENEFIT CARDS ── */
+.ben-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.ben-ic{width:28px;height:28px;border-radius:8px;background:rgba(59,130,246,.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ben-card h5{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.ben-card p{font-size:11.5px;color:var(--muted);line-height:1.6;margin:0}
+
+/* ── PLATAFORMAS ── */
+.plat-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:18px}
+.plat-card h5{font-family:'Syne',sans-serif;font-size:12px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px}
+.plat-card ul{list-style:none;font-size:11.5px;color:var(--muted);line-height:2}
+.plat-card ul li::before{content:'· ';color:var(--cyan)}
+.plat-note{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--cyan);border-radius:var(--r);padding:16px 20px;margin-top:14px;font-size:12px;color:var(--muted);line-height:1.7}
+.plat-note strong{color:var(--text)}
+
+/* ── CONVERSION ── */
+.conversion{background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(6,182,212,0.05) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 5%}
 .conversion-inner{text-align:center;max-width:600px;margin:0 auto}
 .conversion h2{font-family:'Syne',sans-serif;font-size:clamp(22px,3vw,36px);font-weight:700;letter-spacing:-0.3px;margin-bottom:14px}
 .conversion p{color:var(--muted);font-size:15px;margin-bottom:32px;line-height:1.7}
-.conversion .reply{font-size:12px;color:var(--muted);margin-top:14px}
-.conversion .reply span{color:var(--green)}
+.reply-note{font-size:12px;color:var(--muted);margin-top:14px}
+.reply-note span{color:var(--green)}
 
-/* FOOTER */
+/* ── FOOTER ── */
 footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
 .footer-left{font-size:13px;color:var(--muted);line-height:1.7}
@@ -302,91 +250,85 @@ footer{background:var(--bg);padding:40px 5%;border-top:1px solid var(--border)}
 .footer-links a{color:var(--muted);text-decoration:none;font-size:13px;transition:color .2s}
 .footer-links a:hover{color:var(--text)}
 
-/* FLOATING WA */
-.wa-float{
-  position:fixed;bottom:28px;right:28px;z-index:200;
-  width:56px;height:56px;
-  background:var(--green);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,0.4);
-  text-decoration:none;transition:transform .2s;
-}
+/* ── FLOAT WA ── */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);text-decoration:none;transition:transform .2s}
 .wa-float:hover{transform:scale(1.08)}
-.wa-float::before{
-  content:'';position:absolute;
-  width:56px;height:56px;border-radius:50%;
-  background:rgba(37,211,102,0.4);
-  animation:wa-ring 2.5s infinite;
-}
+.wa-float::before{content:'';position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(37,211,102,0.4);animation:wa-ring 2.5s infinite}
 @keyframes wa-ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.8);opacity:0}}
 .wa-float svg{position:relative;z-index:1}
 
-/* SCROLL REVEAL */
+/* ── GRIDS ── */
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.g6{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.g-sobre{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+
+/* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
 .reveal.visible{opacity:1;transform:none}
 
-/* SCROLL-TO-TOP anchor fix */
-html{scroll-padding-top:var(--offset)}
-
-/* =====================
-   RESPONSIVE
-   ===================== */
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   :root{--announce-h:44px;--offset:108px}
-  .featured-grid,.portfolio-grid{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:repeat(2,1fr)}
-  .stack-grid{grid-template-columns:repeat(2,1fr)}
-  .sobre-inner{grid-template-columns:1fr;gap:32px}
+  .g2,.g-sobre{grid-template-columns:1fr}
+  .g3{grid-template-columns:repeat(2,1fr)}
+  .g4{grid-template-columns:repeat(2,1fr)}
   .nav-links,.nav-right .nav-cta{display:none}
+  .switcher{display:none}
   .hamburger{display:flex}
   .footer-inner{flex-direction:column;gap:16px;text-align:center}
   .footer-links{justify-content:center}
 }
-
 @media(max-width:640px){
   :root{--announce-h:52px;--offset:116px}
-  .announce{font-size:11.5px;padding:0 4%}
-  .announce a{display:block;white-space:normal}
   section{padding:60px 5%}
-  .hero{padding-top:calc(var(--offset) + 40px);padding-bottom:60px;min-height:auto}
+  .hero{padding-top:calc(var(--offset) + 40px);min-height:auto}
+  .up-hero{padding-top:calc(var(--offset) + 40px);min-height:auto}
   .hero h1{font-size:clamp(26px,8vw,38px)}
-  .hero-stats{gap:20px}
-  .stat-num{font-size:20px}
-  .services-grid,.stack-grid{grid-template-columns:1fr}
+  .up-hero h1{font-size:clamp(24px,7vw,34px)}
+  .hero-stats,.up-stats{gap:20px}
+  .stat-num,.snum{font-size:20px}
+  .g3,.g4,.g6{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr}
-  .featured-grid{grid-template-columns:1fr}
-  .fcard{padding:24px}
-  .hero-actions{flex-direction:column;align-items:flex-start}
-  .btn-primary,.btn-secondary{width:100%;justify-content:center}
-  .sobre-quote blockquote{font-size:15px}
+  .hero-actions,.up-btns{flex-direction:column;align-items:flex-start}
+  .btn-primary,.btn-secondary,.up-btng,.up-btns2{width:100%;justify-content:center}
   .wa-float{bottom:20px;right:16px;width:50px;height:50px}
   .wa-float::before{width:50px;height:50px}
+  .announce{font-size:11px}
 }
-
-@media(max-width:380px){
-  :root{--announce-h:56px;--offset:120px}
-  .hero h1{font-size:24px}
-}
+.up-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
+.up-btng{display:inline-flex;align-items:center;gap:7px;background:var(--green);color:#fff;font-size:14px;font-weight:500;padding:12px 24px;border-radius:10px;text-decoration:none;white-space:nowrap}
+.up-btng:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.3);transition:all .2s}
+.up-btns2{display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--text);font-size:14px;border:1px solid var(--border);padding:12px 20px;border-radius:10px;text-decoration:none;white-space:nowrap;cursor:pointer}
+.up-btns2:hover{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.03)}
+.snum{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--text);display:block}
+.slbl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px;display:block}
 </style>
 </head>
 <body>
 
-<!-- ANNOUNCEMENT BAR -->
-<div class="announce">
-  Suporte, infraestrutura, automação ou desenvolvimento?<a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Gostaria%20de%20uma%20análise%20inicial%20sem%20compromisso." target="_blank">WhatsApp para análise sem compromisso →</a>
+<!-- ANNOUNCE BAR -->
+<div class="announce" id="announceBar">
+  Disponível para novos projetos e contratos — <a href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank">Falar no WhatsApp →</a>
 </div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#"><span>bruno</span>alves.tech</a>
-  <ul class="nav-links">
-    <li><a href="#servicos">Serviços</a></li>
-    <li><a href="#portfolio">Portfólio</a></li>
-    <li><a href="#sobre">Sobre</a></li>
-    <li><a href="#contato">Contato</a></li>
+  <a class="nav-logo" href="#" onclick="showPage('portfolio');return false"><span>bruno</span>alves.tech</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#" onclick="scrollToId('servicos');return false">Serviços</a></li>
+    <li><a href="#" onclick="scrollToId('portfolio-sec');return false">Portfólio</a></li>
+    <li><a href="#" onclick="scrollToId('sobre');return false">Sobre</a></li>
+    <li><a href="#" onclick="scrollToId('contato');return false">Contato</a></li>
   </ul>
   <div class="nav-right">
-    <a class="nav-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">WhatsApp</a>
+    <div class="switcher">
+      <button class="sw-btn active" id="sw-portfolio" onclick="showPage('portfolio')">Portfólio</button>
+      <button class="sw-btn" id="sw-escolas" onclick="showPage('escolas')">Escolas</button>
+      <button class="sw-btn" id="sw-corporativo" onclick="showPage('corporativo')">Corporativo</button>
+    </div>
+    <a class="nav-cta" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank">WhatsApp</a>
     <button class="hamburger" id="hamburgerBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -395,412 +337,688 @@ html{scroll-padding-top:var(--offset)}
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a href="#servicos" class="menu-link">Serviços</a>
-  <a href="#portfolio" class="menu-link">Portfólio</a>
-  <a href="#sobre" class="menu-link">Sobre</a>
-  <a href="#contato" class="menu-link">Contato</a>
-  <a href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank" class="m-cta">💬 Falar no WhatsApp</a>
+  <span class="m-section">Navegar para</span>
+  <button class="mlink" onclick="showPage('portfolio');closeMenu()">Portfólio Pessoal</button>
+  <button class="mlink" onclick="showPage('escolas');closeMenu()">UPTECH · Escolas</button>
+  <button class="mlink" onclick="showPage('corporativo');closeMenu()">UPTECH · Corporativo</button>
+  <span class="m-section" style="border-top:1px solid var(--border);padding-top:14px">Seções</span>
+  <a href="#servicos" class="menu-link" onclick="closeMenu()">Serviços</a>
+  <a href="#portfolio-sec" class="menu-link" onclick="closeMenu()">Portfólio</a>
+  <a href="#sobre" class="menu-link" onclick="closeMenu()">Sobre</a>
+  <a href="#contato" class="menu-link" onclick="closeMenu()">Contato</a>
+  <a href="https://wa.me/5571981230424" target="_blank" class="m-cta">💬 Falar no WhatsApp</a>
 </div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Disponível para novos projetos</div>
-    <h1>
-      Conectando sua<br>
-      <span class="line2">empresa ao</span><br>
-      <span class="accent">próximo nível.</span>
-    </h1>
-    <p class="hero-sub">Infraestrutura corporativa, servidores, redes, sistemas web e automações — para empresas, escolas, igrejas e profissionais em todo o Brasil. Atendimento remoto ou presencial em Salvador e Região Metropolitana.</p>
-    <div class="hero-actions">
-      <a class="btn-primary" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20um%20orçamento." target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        Falar no WhatsApp agora
-      </a>
-      <a class="btn-secondary" href="#servicos">Ver serviços ↓</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">+1.300</span><span class="stat-label">Usuários gerenciados</span></div>
-      <div class="stat"><span class="stat-num">+3 anos</span><span class="stat-label">Em produção real</span></div>
-      <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Atendimento à distância</span></div>
-    </div>
-  </div>
-</section>
+<!-- ════════════════════════════════════════
+     PAGE 1 — PORTFÓLIO PESSOAL
+════════════════════════════════════════ -->
+<div class="page active" id="page-portfolio">
 
-<!-- FEATURED SERVICES -->
-<section class="featured" id="servicos">
-  <div class="section-inner">
-    <p class="section-label">Serviços em destaque</p>
-    <h2 class="section-title">Onde entrego mais resultado</h2>
-    <p class="section-sub">Serviços com alta demanda no mercado atual, entrega rápida e retorno direto para o seu negócio.</p>
-    <div class="featured-grid reveal">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Disponível para novos projetos</div>
+      <h1>Conectando sua<br><span class="line2">empresa ao</span><br><span class="accent">próximo nível.</span></h1>
+      <p class="hero-sub">Infraestrutura corporativa, servidores, redes, sistemas web e automações — para empresas, escolas e igrejas em todo o Brasil. Atendimento remoto ou presencial em Salvador e Região Metropolitana.</p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <button class="btn-secondary" onclick="document.getElementById('servicos').scrollIntoView({behavior:'smooth'})">Ver serviços ↓</button>
+      </div>
+      <div class="hero-stats">
+        <div><span class="stat-num">+1.300</span><span class="stat-label">Usuários gerenciados</span></div>
+        <div><span class="stat-num">+3 anos</span><span class="stat-label">Em produção real</span></div>
+        <div><span class="stat-num">100%</span><span class="stat-label">Atendimento à distância</span></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="fcard">
-        <span class="fcard-badge badge-demand">Alta demanda</span>
-        <div class="fcard-icon icon-green">💬</div>
-        <h3>Chatbot para WhatsApp Business</h3>
-        <p>Automatize seu atendimento e pare de perder clientes por demora na resposta. Fluxos personalizados, IA integrada e múltiplos atendentes.</p>
-        <div class="fcard-tags">
-          <span class="tag">Clínicas</span>
-          <span class="tag">Imobiliárias</span>
-          <span class="tag">E-commerce</span>
-          <span class="tag">Prestadores</span>
+  <!-- FEATURED SERVICES -->
+  <section style="background:var(--bg);padding:80px 5%" id="servicos">
+    <div class="sec-inner">
+      <p class="sec-label">Serviços em destaque</p>
+      <h2 class="sec-title">Onde entrego mais resultado</h2>
+      <p class="sec-sub">Alta demanda no mercado atual, entrega rápida e retorno direto para o negócio.</p>
+      <div class="g2 reveal">
+        <div class="fcard">
+          <span class="fcard-badge badge-demand">Alta demanda</span>
+          <div class="fcard-icon icon-green">💬</div>
+          <h3>Chatbot para WhatsApp Business</h3>
+          <p>Automatize atendimento e pare de perder clientes por demora na resposta. Fluxos personalizados, IA integrada e múltiplos atendentes.</p>
+          <div class="fcard-tags"><span class="tag">Clínicas</span><span class="tag">Imobiliárias</span><span class="tag">E-commerce</span></div>
+          <p class="fcard-meta"><strong>Entrega:</strong> a partir de 5 dias úteis · n8n + Evolution API + IA</p>
+          <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Interesse%20em%20chatbot%20para%20WhatsApp." target="_blank">Quero meu chatbot →</a>
         </div>
-        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 5 dias úteis · n8n + Evolution API + IA</p>
-        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Tenho%20interesse%20no%20chatbot%20para%20WhatsApp." target="_blank">Quero meu chatbot →</a>
-      </div>
-
-      <div class="fcard">
-        <span class="fcard-badge badge-fast">Resolução rápida</span>
-        <div class="fcard-icon icon-cyan">🖥️</div>
-        <h3>Servidor e VPS em Produção</h3>
-        <p>Site fora do ar, sistema lento ou VPS sem configuração? Configuro, otimizo e entrego rodando com SSL, backup e monitoramento.</p>
-        <div class="fcard-tags">
-          <span class="tag">Ubuntu</span>
-          <span class="tag">Nginx</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">Docker</span>
-          <span class="tag">AWS</span>
+        <div class="fcard">
+          <span class="fcard-badge badge-fast">Resolução rápida</span>
+          <div class="fcard-icon icon-cyan">🖥️</div>
+          <h3>Servidor e VPS em Produção</h3>
+          <p>Site fora do ar, sistema lento ou VPS sem configuração? Configuro, otimizo e entrego rodando com SSL, backup e monitoramento.</p>
+          <div class="fcard-tags"><span class="tag">Ubuntu</span><span class="tag">Nginx</span><span class="tag">Node.js</span><span class="tag">MySQL</span></div>
+          <p class="fcard-meta"><strong>Entrega:</strong> a partir de 1 dia útil · SSL · PM2 · UFW</p>
+          <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Preciso%20de%20ajuda%20com%20VPS." target="_blank">Solicitar configuração →</a>
         </div>
-        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 1 dia útil · SSL · PM2 · UFW</p>
-        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Preciso%20de%20ajuda%20com%20meu%20servidor%20VPS." target="_blank">Solicitar configuração →</a>
-      </div>
-
-      <div class="fcard">
-        <span class="fcard-badge badge-cost">Reduz custo operacional</span>
-        <div class="fcard-icon icon-blue">⚡</div>
-        <h3>Automações e Integrações</h3>
-        <p>Elimine tarefas manuais repetitivas com automações que funcionam 24h. Integro sistemas, crio fluxos e dashboards de controle.</p>
-        <div class="fcard-tags">
-          <span class="tag">n8n</span>
-          <span class="tag">APIs REST</span>
-          <span class="tag">Google Workspace</span>
-          <span class="tag">CRMs</span>
+        <div class="fcard">
+          <span class="fcard-badge badge-cost">Reduz custo operacional</span>
+          <div class="fcard-icon icon-blue">⚡</div>
+          <h3>Automações e Integrações</h3>
+          <p>Elimine tarefas manuais com automações 24h. Integro sistemas, crio fluxos e dashboards de controle.</p>
+          <div class="fcard-tags"><span class="tag">n8n</span><span class="tag">APIs REST</span><span class="tag">Google Workspace</span></div>
+          <p class="fcard-meta"><strong>Entrega:</strong> a partir de 3 dias úteis</p>
+          <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Quero%20automatizar%20um%20processo." target="_blank">Automatizar meu processo →</a>
         </div>
-        <p class="fcard-meta"><strong>Entrega:</strong> a partir de 3 dias úteis · Planilhas · ERPs · WA API</p>
-        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Quero%20automatizar%20um%20processo%20da%20minha%20empresa." target="_blank">Automatizar meu processo →</a>
-      </div>
-
-      <div class="fcard">
-        <span class="fcard-badge badge-rec">Recorrência mensal</span>
-        <div class="fcard-icon icon-amber">📈</div>
-        <h3>Tráfego Pago (Meta e Google Ads)</h3>
-        <p>Campanhas gerenciadas com foco em resultado real: leads qualificados, vendas e presença digital. Relatórios mensais e otimização contínua.</p>
-        <div class="fcard-tags">
-          <span class="tag">Meta Ads</span>
-          <span class="tag">Google Ads</span>
-          <span class="tag">Remarketing</span>
-          <span class="tag">Geração de leads</span>
-        </div>
-        <p class="fcard-meta"><strong>Modelo:</strong> contrato mensal · Negócios locais · Infoprodutos</p>
-        <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Tenho%20interesse%20em%20gestão%20de%20tráfego%20pago." target="_blank">Quero mais clientes →</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- OTHER SERVICES -->
-<section class="other-services">
-  <div class="section-inner">
-    <p class="section-label">Outros serviços</p>
-    <h2 class="section-title">Mais do que posso entregar</h2>
-    <p class="section-sub">Portfólio completo para empresas, escolas e negócios de todos os portes.</p>
-    <div class="services-grid reveal">
-      <div class="scard">
-        <div class="scard-icon">🔧</div>
-        <h4>Infraestrutura & Redes</h4>
-        <ul>
-          <li>Windows Server · AD · GPO · DHCP/DNS</li>
-          <li>Virtualização com Proxmox VE</li>
-          <li>Redes corporativas pfSense · UniFi · VLANs</li>
-          <li>Monitoramento Zabbix + Grafana</li>
-          <li>Backup e segurança da informação</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <div class="scard-icon">☁️</div>
-        <h4>Cloud & DevOps</h4>
-        <ul>
-          <li>Migração de cargas para AWS</li>
-          <li>Containerização com Docker</li>
-          <li>CI/CD e repositórios GitHub Actions</li>
-          <li>Consultoria de modernização</li>
-          <li>Infraestrutura como código</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <div class="scard-icon">💻</div>
-        <h4>Desenvolvimento de Sistemas</h4>
-        <ul>
-          <li>Sistemas web personalizados</li>
-          <li>Gestão para igrejas, escolas e empresas</li>
-          <li>Portais e dashboards administrativos</li>
-          <li>Sistemas de agendamento e doação</li>
-          <li>Scripts PowerShell e Bash</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <div class="scard-icon">🖥️</div>
-        <h4>Totens & Soluções Interativas</h4>
-        <ul>
-          <li>Totens de autoatendimento e senhas</li>
-          <li>Catálogos digitais interativos</li>
-          <li>Check-in e pesquisa de satisfação</li>
-          <li>Painéis informativos</li>
-          <li>Lousas para escolas e organizações</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <div class="scard-icon">🛠️</div>
-        <h4>Assistência Técnica (Salvador/BA)</h4>
-        <ul>
-          <li>Manutenção de computadores e notebooks</li>
-          <li>Formatação e instalação de sistemas</li>
-          <li>Upgrade SSD e memória RAM</li>
-          <li>Configuração de redes</li>
-          <li>Suporte remoto para qualquer estado</li>
-        </ul>
-      </div>
-      <div class="scard">
-        <div class="scard-icon">🚀</div>
-        <h4>Marketing Digital & Presença Online</h4>
-        <ul>
-          <li>Tráfego pago Meta Ads e Google Ads</li>
-          <li>Registro da empresa no Google</li>
-          <li>Criação de sites e landing pages</li>
-          <li>Registro de domínios</li>
-          <li>E-mail profissional com domínio próprio</li>
-          <li>Criação de SaaS sob medida</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section class="portfolio" id="portfolio">
-  <div class="section-inner">
-    <p class="section-label">Portfólio</p>
-    <h2 class="section-title">Projetos em produção real</h2>
-    <p class="section-sub">Trabalhos entregues com resultado documentado.</p>
-    <div class="portfolio-grid reveal">
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">Escolas</span></div>
-        <h4>Credenciais institucionais em escala</h4>
-        <p>Geração e gestão de credenciais para 400+ alunos com cartões PDF personalizados, QR codes e integração com Google Workspace.</p>
-      </div>
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Cloud</span><span class="ptag">Linux</span><span class="ptag">DevOps</span></div>
-        <h4>VPS completo em produção</h4>
-        <p>Provisionamento Ubuntu com Nginx, Node.js, MySQL, PM2, UFW e Let's Encrypt SSL. Ambiente estável em produção real.</p>
-      </div>
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">Sistemas Web</span></div>
-        <h4>Sistema de gestão institucional</h4>
-        <p>Sistema web sob medida para controle de membros, doações e comunicação interna de organização religiosa.</p>
-      </div>
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">PowerShell</span><span class="ptag">Bash</span></div>
-        <h4>Scripts de diagnóstico de infraestrutura</h4>
-        <p>Scripts que geram relatórios HTML automáticos para triagem de incidentes em ambientes corporativos.</p>
-        <a href="https://github.com/brunoalvestech" target="_blank">github.com/brunoalvestech ↗</a>
-      </div>
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">React</span><span class="ptag">CRM</span></div>
-        <h4>CRM de prospecção escolar</h4>
-        <p>Ferramenta React com cadência de 21 dias e 5 touchpoints para gestão de contatos de escolas privadas.</p>
-      </div>
-      <div class="pcard">
-        <div class="pcard-tags"><span class="ptag">Infraestrutura</span><span class="ptag">Redes</span></div>
-        <h4>TI para instituição de ensino</h4>
-        <p>Gestão de ambiente com 1.300+ usuários, incluindo AD, GPO, DHCP/DNS, laboratórios e suporte continuado.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STACK -->
-<section class="stack-section">
-  <div class="section-inner">
-    <p class="section-label">Stack técnico</p>
-    <h2 class="section-title">Tecnologias que uso em produção</h2>
-    <div class="stack-grid reveal">
-      <div class="stack-block">
-        <h4>Infraestrutura</h4>
-        <ul>
-          <li>Windows Server</li>
-          <li>Linux · Ubuntu</li>
-          <li>Proxmox VE</li>
-          <li>pfSense</li>
-          <li>UniFi</li>
-          <li>Zabbix · Grafana</li>
-        </ul>
-      </div>
-      <div class="stack-block">
-        <h4>Cloud & DevOps</h4>
-        <ul>
-          <li>AWS</li>
-          <li>Docker</li>
-          <li>Nginx · PM2</li>
-          <li>GitHub Actions</li>
-          <li>Let's Encrypt</li>
-          <li>UFW · SSH</li>
-        </ul>
-      </div>
-      <div class="stack-block">
-        <h4>Desenvolvimento</h4>
-        <ul>
-          <li>Node.js</li>
-          <li>React</li>
-          <li>MySQL · PostgreSQL</li>
-          <li>PowerShell · Bash</li>
-          <li>n8n · Evolution API</li>
-          <li>REST APIs</li>
-        </ul>
-      </div>
-      <div class="stack-block">
-        <h4>Redes & AD</h4>
-        <ul>
-          <li>TCP/IP · VLANs</li>
-          <li>DHCP · DNS</li>
-          <li>Active Directory</li>
-          <li>GPO</li>
-          <li>Wi-Fi corporativo</li>
-          <li>VPN · Firewall</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SOBRE -->
-<section class="sobre" id="sobre">
-  <div class="section-inner">
-    <div class="sobre-inner reveal">
-      <div class="sobre-text">
-        <p class="section-label">Sobre</p>
-        <h2 class="section-title">Bruno Alves</h2>
-        <p>Analista de TI com atuação em <strong>infraestrutura corporativa, administração de servidores, desenvolvimento de sistemas web e automação de processos</strong>. Com experiência em ambientes de produção que atendem centenas de usuários.</p>
-        <p>Atua na implantação e gerenciamento de <strong>redes corporativas, servidores Windows e Linux, virtualização, cloud computing</strong> e monitoramento de ambientes críticos.</p>
-        <p>Além da infraestrutura, desenvolve sistemas personalizados, portais administrativos, integrações, chatbots para WhatsApp e soluções interativas para <strong>empresas, escolas, igrejas e órgãos públicos</strong>.</p>
-        <p>Não terceirizo. Não enrolo. <strong>Você fala diretamente comigo.</strong></p>
-        <div class="badges">
-          <span class="cbadge">CCNA Switching & Routing</span>
-          <span class="cbadge">AWS Cloud Foundations</span>
-          <span class="cbadge active">Disponível para novos projetos</span>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571997362588" target="_blank">(71) 99736-2588</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571981230424" target="_blank">(71) 98123-0424</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:suporte.brunoalves@gmail.com">suporte.brunoalves@gmail.com</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:bruno.alves@uptechst.com.br">bruno.alves@uptechst.com.br</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#06B6D4"></span><a href="https://linkedin.com/in/brunoalvestech" target="_blank">linkedin/brunoalvestech</a></div>
-          <div class="contact-item"><span class="contact-dot" style="background:#7a8599"></span><a href="https://github.com/brunoalvestech" target="_blank">github/brunoalvestech</a></div>
+        <div class="fcard">
+          <span class="fcard-badge badge-rec">Recorrência mensal</span>
+          <div class="fcard-icon icon-amber">📈</div>
+          <h3>Tráfego Pago (Meta e Google Ads)</h3>
+          <p>Campanhas gerenciadas com foco em resultado real: leads qualificados, vendas e presença digital.</p>
+          <div class="fcard-tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">Remarketing</span></div>
+          <p class="fcard-meta"><strong>Modelo:</strong> contrato mensal · Negócios locais</p>
+          <a class="fcard-cta" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Interesse%20em%20tráfego%20pago." target="_blank">Quero mais clientes →</a>
         </div>
       </div>
-      <div class="sobre-quote">
-        <blockquote>"Ajudo organizações a modernizar processos, reduzir custos e aumentar eficiência com soluções tecnológicas confiáveis, seguras e escaláveis."</blockquote>
-        <p class="quote-sub">Bruno Alves · Analista de TI · Camaçari / Salvador, BA<br>Atendimento remoto para todo o Brasil · Presencial na Grande Salvador</p>
+    </div>
+  </section>
+
+  <!-- OTHER SERVICES -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Outros serviços</p>
+      <h2 class="sec-title">Mais do que posso entregar</h2>
+      <p class="sec-sub">Portfólio completo para empresas, escolas e negócios de todos os portes.</p>
+      <div class="g3 reveal">
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">🔧</div><h4>Infraestrutura & Redes</h4><ul><li>Windows Server · AD · GPO · DHCP/DNS</li><li>Virtualização com Proxmox VE</li><li>Redes corporativas pfSense · UniFi · VLANs</li><li>Monitoramento Zabbix + Grafana</li><li>Backup e segurança da informação</li></ul></div>
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">☁️</div><h4>Cloud & DevOps</h4><ul><li>Migração de cargas para AWS</li><li>Containerização com Docker</li><li>CI/CD e repositórios GitHub Actions</li><li>Consultoria de modernização</li><li>Infraestrutura como código</li></ul></div>
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">💻</div><h4>Desenvolvimento de Sistemas</h4><ul><li>Sistemas web personalizados</li><li>Gestão para igrejas, escolas e empresas</li><li>Portais e dashboards administrativos</li><li>Sistemas de agendamento e doação</li><li>Scripts PowerShell e Bash</li></ul></div>
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">🖥️</div><h4>Totens & Soluções Interativas</h4><ul><li>Totens de autoatendimento e senhas</li><li>Catálogos digitais interativos</li><li>Check-in e pesquisa de satisfação</li><li>Painéis informativos e lousas</li></ul></div>
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">🛠️</div><h4>Assistência Técnica (Salvador/BA)</h4><ul><li>Manutenção de computadores e notebooks</li><li>Formatação e instalação de sistemas</li><li>Upgrade SSD e memória RAM</li><li>Suporte remoto para qualquer estado</li></ul></div>
+        <div class="scard"><div style="font-size:18px;margin-bottom:12px">🚀</div><h4>Marketing Digital & Presença Online</h4><ul><li>Tráfego pago Meta Ads e Google Ads</li><li>Registro no Google e criação de sites</li><li>E-mail profissional com domínio próprio</li><li>Criação de SaaS sob medida</li></ul></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONVERSION -->
-<section class="conversion" id="contato">
-  <div class="section-inner">
+  <!-- UPTECH PROMO BANNER -->
+  <section style="background:var(--bg);padding:48px 5%;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="sec-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px" class="reveal">
+        <div style="background:rgba(59,130,246,0.06);border:1px solid rgba(59,130,246,0.2);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--blue)">UPTECH · Escolas</div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.3">TI gerenciada para escolas privadas</h3>
+          <p style="color:var(--muted);font-size:13px;line-height:1.65">Plataformas educacionais, infraestrutura, LGPD e suporte contínuo — como um departamento interno de TI.</p>
+          <button onclick="showPage('escolas')" style="display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(59,130,246,0.3);color:var(--blue);font-size:12px;font-weight:500;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif">Ver solução completa →</button>
+        </div>
+        <div style="background:rgba(6,182,212,0.06);border:1px solid rgba(6,182,212,0.2);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px">
+          <div style="font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--cyan)">UPTECH · Corporativo</div>
+          <h3 style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;line-height:1.3">Servidor, backup e suporte para empresas</h3>
+          <p style="color:var(--muted);font-size:13px;line-height:1.65">Implantação de servidor local, segurança de dados, manutenção preventiva e suporte técnico com SLA.</p>
+          <button onclick="showPage('corporativo')" style="display:inline-flex;align-items:center;gap:8px;background:none;border:1px solid rgba(6,182,212,0.3);color:var(--cyan);font-size:12px;font-weight:500;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:'DM Sans',sans-serif">Ver solução completa →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section style="background:var(--bg);padding:80px 5%" id="portfolio-sec">
+    <div class="sec-inner">
+      <p class="sec-label">Portfólio</p>
+      <h2 class="sec-title">Projetos em produção real</h2>
+      <p class="sec-sub">Trabalhos entregues com resultado documentado.</p>
+      <div class="g2 reveal">
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">Escolas</span></div><h4>Credenciais institucionais em escala</h4><p>Geração e gestão de credenciais para 400+ alunos com cartões PDF personalizados, QR codes e integração com Google Workspace.</p></div>
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Cloud</span><span class="ptag">Linux</span><span class="ptag">DevOps</span></div><h4>VPS completo em produção</h4><p>Provisionamento Ubuntu com Nginx, Node.js, MySQL, PM2, UFW e Let's Encrypt SSL. Ambiente estável em produção real.</p></div>
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">Sistemas Web</span></div><h4>Sistema de gestão institucional</h4><p>Sistema web sob medida para controle de membros, doações e comunicação interna de organização religiosa.</p></div>
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Automação</span><span class="ptag">PowerShell</span><span class="ptag">Bash</span></div><h4>Scripts de diagnóstico de infraestrutura</h4><p>Scripts que geram relatórios HTML automáticos para triagem de incidentes em ambientes corporativos.</p><a href="https://github.com/brunoalvestech" target="_blank">github.com/brunoalvestech ↗</a></div>
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Desenvolvimento</span><span class="ptag">React</span><span class="ptag">CRM</span></div><h4>CRM de prospecção escolar</h4><p>Ferramenta React com cadência de 21 dias e 5 touchpoints para gestão de contatos de escolas privadas.</p></div>
+        <div class="pcard"><div class="pcard-tags"><span class="ptag">Infraestrutura</span><span class="ptag">Redes</span></div><h4>TI para instituição de ensino</h4><p>Gestão de ambiente com 1.300+ usuários, AD, GPO, DHCP/DNS, laboratórios e suporte continuado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Stack técnico</p>
+      <h2 class="sec-title">Tecnologias que uso em produção</h2>
+      <div class="g4 reveal">
+        <div class="stack-block"><h4>Infraestrutura</h4><ul><li>Windows Server</li><li>Linux · Ubuntu</li><li>Proxmox VE</li><li>pfSense · UniFi</li><li>Zabbix · Grafana</li></ul></div>
+        <div class="stack-block"><h4>Cloud & DevOps</h4><ul><li>AWS</li><li>Docker</li><li>Nginx · PM2</li><li>GitHub Actions</li><li>Let's Encrypt · UFW</li></ul></div>
+        <div class="stack-block"><h4>Desenvolvimento</h4><ul><li>Node.js · React</li><li>MySQL · PostgreSQL</li><li>PowerShell · Bash</li><li>n8n · Evolution API</li><li>REST APIs</li></ul></div>
+        <div class="stack-block"><h4>Redes & AD</h4><ul><li>TCP/IP · VLANs</li><li>DHCP · DNS</li><li>Active Directory · GPO</li><li>Wi-Fi corporativo</li><li>VPN · Firewall</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section style="background:var(--bg);padding:80px 5%" id="sobre">
+    <div class="sec-inner">
+      <div class="g-sobre reveal">
+        <div class="sobre-text">
+          <p class="sec-label">Sobre</p>
+          <h2 class="sec-title">Bruno Alves</h2>
+          <p>Analista de TI com atuação em <strong>infraestrutura corporativa, administração de servidores, desenvolvimento de sistemas web e automação de processos</strong>.</p>
+          <p>Atua na implantação e gerenciamento de <strong>redes corporativas, servidores Windows e Linux, virtualização, cloud computing</strong> e monitoramento de ambientes críticos.</p>
+          <p>Desenvolve sistemas personalizados, portais, integrações, chatbots e soluções interativas para <strong>empresas, escolas, igrejas e órgãos públicos</strong>.</p>
+          <p>Não terceirizo. Não enrolo. <strong>Você fala diretamente comigo.</strong></p>
+          <div class="badges">
+            <span class="cbadge">CCNA Switching & Routing</span>
+            <span class="cbadge">AWS Cloud Foundations</span>
+            <span class="cbadge active">Disponível para projetos</span>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571997362588" target="_blank">(71) 99736-2588</a></div>
+            <div class="contact-item"><span class="contact-dot" style="background:#25D366"></span><a href="https://wa.me/5571981230424" target="_blank">(71) 98123-0424</a></div>
+            <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:suporte.brunoalves@gmail.com">suporte.brunoalves@gmail.com</a></div>
+            <div class="contact-item"><span class="contact-dot" style="background:#3B82F6"></span><a href="mailto:bruno.alves@uptechst.com.br">bruno.alves@uptechst.com.br</a></div>
+            <div class="contact-item"><span class="contact-dot" style="background:#06B6D4"></span><a href="https://linkedin.com/in/brunoalvestech" target="_blank">linkedin/brunoalvestech</a></div>
+            <div class="contact-item"><span class="contact-dot" style="background:#7a8599"></span><a href="https://github.com/brunoalvestech" target="_blank">github/brunoalvestech</a></div>
+          </div>
+        </div>
+        <div class="sobre-quote">
+          <blockquote>"Ajudo organizações a modernizar processos, reduzir custos e aumentar eficiência com soluções tecnológicas confiáveis, seguras e escaláveis."</blockquote>
+          <p class="quote-sub">Bruno Alves · Analista de TI · Camaçari / Salvador, BA<br>Atendimento remoto para todo o Brasil · Presencial na Grande Salvador</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSION -->
+  <div class="conversion" id="contato">
     <div class="conversion-inner reveal">
       <h2>Tem um projeto em mente?</h2>
       <p>Me manda uma mensagem no WhatsApp. Sem formulário, sem espera — eu respondo pessoalmente e a gente resolve.</p>
-      <a class="btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar%20sobre%20um%20projeto." target="_blank">
+      <a class="btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
         Chamar no WhatsApp
       </a>
-      <p class="reply">Respondo em até <span>2 horas</span> em dias úteis.</p>
+      <p class="reply-note">Respondo em até <span>2 horas</span> em dias úteis.</p>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-left">
-      <strong>@brunoalvestech</strong> · Bruno Alves · Analista de TI · Salvador, BA<br>
-      <span style="font-size:12px">(71) 99736-2588 · (71) 98123-0424 · suporte.brunoalves@gmail.com</span>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left"><strong>@brunoalvestech</strong> · Bruno Alves · Analista de TI · Salvador, BA<br><span style="font-size:12px">(71) 99736-2588 · suporte.brunoalves@gmail.com</span></div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
+        <a href="https://github.com/brunoalvestech" target="_blank">GitHub</a>
+        <a href="https://www.instagram.com/uptech_st/" target="_blank">Instagram</a>
+        <a href="https://wa.me/5571981230424" target="_blank">WhatsApp</a>
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
-      <a href="https://github.com/brunoalvestech" target="_blank">GitHub</a>
-      <a href="https://www.instagram.com/uptech_st/" target="_blank">Instagram</a>
-      <a href="https://wa.me/5571981230424" target="_blank">WhatsApp</a>
+  </footer>
+</div><!-- /page-portfolio -->
+
+
+<!-- ════════════════════════════════════════
+     PAGE 2 — UPTECH ESCOLAS
+════════════════════════════════════════ -->
+<div class="page" id="page-escolas">
+
+  <section class="up-hero">
+    <div class="up-hero-inner">
+      <div class="up-badge">Especialistas em escolas privadas · Salvador e Região Metropolitana</div>
+      <h1>Sua escola merece<br><em>uma TI que funciona</em><br><span class="ac">de verdade.</span></h1>
+      <p>A UPTECH atua como um departamento de TI externo e dedicado — organizando, padronizando e evoluindo toda a infraestrutura digital da sua instituição. Gestão contínua, preventiva e com SLA contratual garantido.</p>
+      <div class="up-btns">
+        <a class="up-btng" href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Quero%20agendar%20o%20diagnóstico%20gratuito%20para%20minha%20escola." target="_blank">Agendar diagnóstico gratuito</a>
+        <button class="up-btns2" onclick="document.getElementById('escolas-planos').scrollIntoView({behavior:'smooth'})">Conhecer os planos</button>
+      </div>
+      <div class="up-stats">
+        <div><span class="snum">+1.300</span><span class="slbl">Usuários gerenciados</span></div>
+        <div><span class="snum">+3 anos</span><span class="slbl">Em produção real</span></div>
+        <div><span class="snum">LGPD</span><span class="slbl">Conformidade garantida</span></div>
+        <div><span class="snum">100%</span><span class="slbl">Foco educacional</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">O diagnóstico do mercado</p>
+      <h2 class="sec-title">A TI da sua escola está nessa lista?</h2>
+      <p class="sec-sub">Levantamentos com escolas privadas revelam um padrão recorrente: tecnologia tratada de forma reativa, sem gestão e sem planejamento.</p>
+      <div class="g6 reveal">
+        <div class="prob-item"><strong><span class="pdot"></span>Suporte só após a falha</strong>Intervenção apenas quando o impacto já causou prejuízo à operação.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Sem política de backup</strong>Dados críticos de alunos e responsáveis sem proteção formal.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Wi-Fi subdimensionado</strong>Redes lentas comprometendo aulas e provas online.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Plataformas mal geridas</strong>Usuários duplicados, licenças desperdiçadas, turmas incorretas.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Sem documentação técnica</strong>A escola não sabe o que tem. Dependência de um único técnico.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Risco real de multas LGPD</strong>Dados pessoais de menores expostos sem conformidade legal.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Site e domínio desatualizados</strong>SSL expirado, domínio vencido, e-mails sem padrão de segurança.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Sem planejamento tecnológico</strong>A escola cresce, a TI não acompanha. Custo reativo e imprevisível.</div>
+      </div>
+      <div class="alert-box reveal"><strong>Impacto financeiro de uma falha grave:</strong> uma escola com 400 alunos e mensalidade média de R$ 1.200 movimenta R$ 480.000/mês. Um único dia de interrupção total compromete matrículas, cobranças, comunicação e aulas — o custo de uma gestão contínua de TI é uma fração desse risco.</div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section style="background:var(--bg);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Escopo completo</p>
+      <h2 class="sec-title">Tudo que a sua escola precisa em TI</h2>
+      <p class="sec-sub">Atuação em todas as frentes — do cabeamento ao relatório mensal para a direção.</p>
+      <div class="g3 reveal">
+        <div class="sol-card"><div class="sol-ic">🔧</div><h4>Infraestrutura & Redes</h4><ul><li>Windows Server · AD · GPO · DHCP/DNS</li><li>Proxmox VE · servidores físicos e virtuais</li><li>Wi-Fi corporativo · pfSense · UniFi · VLANs</li><li>QoS e filtro de conteúdo por perfil</li><li>Relatório mensal de rede e incidentes</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">📱</div><h4>Plataformas Educacionais</h4><ul><li>Poliedro · SAS · Grafite · Oxford · FTD</li><li>Google Workspace for Education</li><li>Microsoft 365 Education</li><li>Domínio · Sogni · Gennera · Isaac</li><li>Integração entre plataformas via SSO e API</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">🔒</div><h4>Segurança & LGPD</h4><ul><li>Política 3-2-1 de backup automatizado</li><li>Conformidade com LGPD (Lei 13.709/2018)</li><li>Antivírus · patches · criptografia</li><li>Relatório de riscos e conformidade</li><li>Treinamento de colaboradores</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">⚡</div><h4>Automação & Inteligência Artificial</h4><ul><li>Automação de relatórios periódicos</li><li>Workflows de onboarding/offboarding</li><li>Integração entre sistemas via n8n e APIs</li><li>Assistentes virtuais internos</li><li>Documentos institucionais automatizados</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">📷</div><h4>CFTV & Controle de Acesso</h4><ul><li>Câmeras IP · DVR/NVR</li><li>Catracas · fechaduras eletrônicas · portões</li><li>Integração com controle de presença</li><li>Monitoramento remoto e alertas de falha</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">🌐</div><h4>Sites, Domínios & E-mails</h4><ul><li>DNS · SSL · SPF · DKIM · DMARC</li><li>Site institucional gerenciado</li><li>E-mail profissional padronizado</li><li>Monitoramento de reputação de domínio</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATAFORMAS -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Gestão de plataformas</p>
+      <h2 class="sec-title">Todos os sistemas da escola, geridos pela UPTECH</h2>
+      <p class="sec-sub">Criação e manutenção completa de usuários, turmas, permissões e licenças em cada sistema da instituição.</p>
+      <div class="g2 reveal">
+        <div class="plat-card"><h5>Sistemas pedagógicos & conteúdo</h5><ul><li>SAS Plataforma de Educação</li><li>Poliedro Sistema de Ensino</li><li>Editora Moderna · Oxford University Press</li><li>Nave à Vela · International School</li><li>Grafite / FTD · WPensar</li></ul></div>
+        <div class="plat-card"><h5>Sistemas administrativos & financeiros</h5><ul><li>Domínio Sistemas (Thomson Reuters)</li><li>Sogni · Gennera ERP Educacional</li><li>Isaac (Gestão Financeira Escolar)</li><li>Google Workspace for Education</li><li>Microsoft 365 Education</li></ul></div>
+      </div>
+      <div class="plat-note reveal">Atividades em todas as plataformas: <strong>criação, edição e exclusão de usuários</strong> (alunos, professores, coordenadores, administradores) · <strong>organização de turmas, disciplinas e anos letivos</strong> · <strong>controle e otimização de licenças</strong> · <strong>integração entre plataformas via SSO e APIs</strong> · suporte técnico de primeiro e segundo nível.</div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section style="background:var(--bg);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Diferenciais competitivos</p>
+      <h2 class="sec-title">O mercado oferece suporte. A UPTECH oferece gestão.</h2>
+      <p class="sec-sub">A diferença não é semântica — é estrutural. Parceiro estratégico, não simples prestador de serviço.</p>
+      <div class="g3 reveal">
+        <div class="dif-card"><div class="dif-num">01</div><h4>Especialização exclusiva no setor educacional</h4><p>Profundo conhecimento das particularidades das escolas: calendário letivo, sistemas pedagógicos e exigências regulatórias.</p></div>
+        <div class="dif-card"><div class="dif-num">02</div><h4>Gestão contínua e preventiva — não reativa</h4><p>Monitoramento ativo da infraestrutura. Identificamos riscos antes que se tornem falhas com impacto nos alunos.</p></div>
+        <div class="dif-card"><div class="dif-num">03</div><h4>Comunicação clara com a direção</h4><p>Relatórios mensais acessíveis para não-técnicos: indicadores, riscos identificados e plano de ação.</p></div>
+        <div class="dif-card"><div class="dif-num">04</div><h4>Documentação técnica — o conhecimento pertence à escola</h4><p>Topologia, inventário, credenciais seguras e histórico de manutenções. A escola não fica refém de ninguém.</p></div>
+        <div class="dif-card"><div class="dif-num">05</div><h4>SLA contratual com responsabilidade real</h4><p>Tempos máximos de resposta e resolução por criticidade, com penalidades contratuais em caso de descumprimento.</p></div>
+        <div class="dif-card"><div class="dif-num">06</div><h4>Conformidade LGPD garantida e documentada</h4><p>Escolas tratam dados sensíveis de menores. Implementamos boas práticas alinhadas à Lei nº 13.709/2018.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLA -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Compromisso contratual</p>
+      <h2 class="sec-title">SLA com tempo de resposta garantido em contrato</h2>
+      <p class="sec-sub">Previsibilidade real para a direção. Tempos definidos por nível de criticidade, com penalidades em caso de descumprimento.</p>
+      <div class="g4 reveal">
+        <div class="sla-card"><span class="sla-badge sc1">Crítica</span><p>Sistema principal fora do ar · rede inoperante</p><div class="sla-time">1h resposta</div><div class="sla-res">Resolução: até 4 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc2">Alta</span><p>Impacto parcial na operação escolar</p><div class="sla-time">2h resposta</div><div class="sla-res">Resolução: até 8 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc3">Normal</span><p>Problemas isolados sem impacto imediato</p><div class="sla-time">4h resposta</div><div class="sla-res">Resolução: até 24 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc4">Baixa</span><p>Melhorias e novos acessos</p><div class="sla-time">1 dia útil</div><div class="sla-res">Resolução: até 5 dias úteis</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section style="background:var(--bg);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Resultados esperados</p>
+      <h2 class="sec-title">O que muda quando a TI é gerida de verdade</h2>
+      <p class="sec-sub">Indicadores baseados em benchmarks do setor educacional e resultados observados em instituições com gestão tecnológica estruturada.</p>
+      <table class="res-table reveal">
+        <thead><tr><th>Dimensão</th><th>Sem gestão estruturada</th><th>Com a UPTECH</th></tr></thead>
+        <tbody>
+          <tr><td>Disponibilidade de rede</td><td>Interrupções frequentes e imprevisíveis</td><td>Uptime &gt;99% com monitoramento ativo</td></tr>
+          <tr><td>Tempo de resolução</td><td>Horas ou dias sem prazo definido</td><td>SLA contratual garantido</td></tr>
+          <tr><td>Segurança de dados</td><td>Backup informal ou inexistente</td><td>Política 3-2-1 automatizada</td></tr>
+          <tr><td>Gestão de plataformas</td><td>Manual, inconsistente, com erros</td><td>Automatizada e padronizada</td></tr>
+          <tr><td>Custo de TI</td><td>Imprevisível e reativo</td><td>Mensal fixo, sem surpresas</td></tr>
+          <tr><td>Conformidade LGPD</td><td>Risco elevado de multas</td><td>Boas práticas documentadas</td></tr>
+          <tr><td>Visibilidade da direção</td><td>Nenhuma — TI é uma caixa preta</td><td>Relatórios mensais claros</td></tr>
+          <tr><td>Documentação técnica</td><td>Inexistente ou desatualizada</td><td>Atualizada e acessível</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section style="background:var(--bg2);padding:80px 5%" id="escolas-planos">
+    <div class="sec-inner">
+      <p class="sec-label">Planos de serviço</p>
+      <h2 class="sec-title">Escolha o plano ideal para o porte da sua escola</h2>
+      <p class="sec-sub">Contratos mensais de gestão contínua. O investimento é definido após diagnóstico técnico, com base na complexidade real da infraestrutura.</p>
+      <div class="price-note">Os valores são personalizados conforme o porte, número de equipamentos, plataformas e complexidade da instituição. <a href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Gostaria%20de%20receber%20uma%20proposta%20para%20minha%20escola." target="_blank">Entre em contato para receber uma proposta →</a></div>
+      <div class="g3 reveal">
+        <div class="plan-card"><div class="plan-name">Essencial</div><div class="plan-target">Escolas até 300 alunos · 1 unidade · até 30 computadores</div><ul class="plan-ul"><li class="yes">Suporte remoto e presencial</li><li class="yes">Manutenção preventiva</li><li class="yes">Gestão de rede e Wi-Fi</li><li class="yes">Monitoramento básico</li><li class="yes">Inventário de ativos</li><li class="no">Gestão de plataformas</li><li class="no">Backup gerenciado</li><li class="no">Relatório mensal</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+        <div class="plan-card feat"><div class="plan-badge">Mais contratado</div><div class="plan-name">Profissional</div><div class="plan-target">300–800 alunos · 1–2 unidades · até 80 computadores</div><ul class="plan-ul"><li class="yes">Tudo do Essencial</li><li class="yes">Gestão de plataformas edu.</li><li class="yes">Backup 3-2-1 gerenciado</li><li class="yes">Site, domínio e e-mails</li><li class="yes">Relatório mensal completo</li><li class="yes">Gestão de CFTV</li><li class="no">Documentação completa</li><li class="no">Automação com IA</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+        <div class="plan-card"><div class="plan-name">Gestão Completa</div><div class="plan-target">+800 alunos · múltiplas unidades · servidores · alta exigência</div><ul class="plan-ul"><li class="yes">Tudo do Profissional</li><li class="yes">Documentação técnica total</li><li class="yes">Automação de processos (IA)</li><li class="yes">Runbooks e procedimentos</li><li class="yes">Apoio estratégico à direção</li><li class="yes">Planejamento tecnológico anual</li><li class="yes">SLA contratual com penalidades</li><li class="yes">Conformidade LGPD formal</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section style="background:var(--bg3);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Como contratar</p>
+      <h2 class="sec-title">Do diagnóstico à gestão em 5 etapas</h2>
+      <p class="sec-sub">Processo simples e sem burocracia. Contrato com vigência mínima de 12 meses e reajuste anual pelo IPCA.</p>
+      <div class="g6 reveal" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+        <div class="proc-item"><div class="proc-num">01</div><h5>Diagnóstico gratuito</h5><p>Visita presencial de 2 a 4 horas. Agendamento via WhatsApp.</p></div>
+        <div class="proc-item"><div class="proc-num">02</div><h5>Relatório & proposta</h5><p>Relatório técnico formal em até 5 dias úteis, com proposta personalizada.</p></div>
+        <div class="proc-item"><div class="proc-num">03</div><h5>Assinatura do contrato</h5><p>Contrato com SLA, cláusula de confidencialidade e respaldo jurídico.</p></div>
+        <div class="proc-item"><div class="proc-num">04</div><h5>Onboarding técnico</h5><p>Inventário, documentação inicial e configurações do ambiente.</p></div>
+        <div class="proc-item"><div class="proc-num">05</div><h5>Gestão contínua</h5><p>SLA ativo, monitoramento, relatório mensal e suporte preventivo permanente.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSION ESCOLAS -->
+  <div class="conversion">
+    <div class="conversion-inner reveal">
+      <h2>Agende o diagnóstico gratuito da sua escola</h2>
+      <p>Sem compromisso de contratação. Presencial na Grande Salvador. Relatório técnico completo em até 5 dias úteis.</p>
+      <a class="btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px" href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Quero%20agendar%20o%20diagnóstico%20técnico%20gratuito%20da%20minha%20escola." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp — (71) 99736-2588
+      </a>
+      <p class="reply-note">Respondo em até <span>2 horas</span> em dias úteis · bruno.alves@uptechst.com.br</p>
     </div>
   </div>
-</footer>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left"><strong>UPTECH</strong> Soluções Tecnológicas · Salvador · Lauro de Freitas · Região Metropolitana – BA<br><span style="font-size:12px">(71) 99736-2588 · bruno.alves@uptechst.com.br</span></div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/uptech_st/" target="_blank">Instagram</a>
+        <a href="https://wa.me/5571997362588" target="_blank">WhatsApp</a>
+        <button onclick="showPage('portfolio')" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif">← Portfólio pessoal</button>
+      </div>
+    </div>
+  </footer>
+</div><!-- /page-escolas -->
+
+
+<!-- ════════════════════════════════════════
+     PAGE 3 — UPTECH CORPORATIVO
+════════════════════════════════════════ -->
+<div class="page" id="page-corporativo">
+
+  <section class="up-hero">
+    <div class="up-hero-inner">
+      <div class="up-badge">Suporte técnico e infraestrutura corporativa · Salvador e Região Metropolitana</div>
+      <h1>Sua empresa merece uma<br><em>TI estruturada,</em><br><span class="ac">segura e previsível.</span></h1>
+      <p>A UPTECH implanta e gerencia toda a infraestrutura tecnológica da sua empresa — servidores locais, backup automatizado, segurança de dados e suporte técnico contínuo. Sem improvisos, sem surpresas, com contrato e SLA garantido.</p>
+      <div class="up-btns">
+        <a class="up-btng" href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Gostaria%20de%20solicitar%20um%20levantamento%20técnico%20gratuito." target="_blank">Solicitar levantamento gratuito</a>
+        <button class="up-btns2" onclick="document.getElementById('corp-planos').scrollIntoView({behavior:'smooth'})">Ver planos</button>
+      </div>
+      <div class="up-stats">
+        <div><span class="snum">+3 anos</span><span class="slbl">Em operações reais</span></div>
+        <div><span class="snum">24/7</span><span class="slbl">Monitoramento ativo</span></div>
+        <div><span class="snum">SLA</span><span class="slbl">Garantido em contrato</span></div>
+        <div><span class="snum">LGPD</span><span class="slbl">Conformidade garantida</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">O problema do mercado</p>
+      <h2 class="sec-title">A TI da sua empresa está assim?</h2>
+      <p class="sec-sub">A maioria das PMEs opera com infraestrutura de TI reativa, frágil e sem documentação. O resultado: prejuízo operacional e dados em risco.</p>
+      <div class="g6 reveal">
+        <div class="prob-item"><strong><span class="pdot"></span>Sem servidor centralizado</strong>Arquivos em HDs individuais, pen drives e e-mails — sem controle e sem backup.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Backup inexistente ou falho</strong>A empresa descobre que perdeu dados somente após o incidente.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Suporte só quando quebra</strong>Técnico chamado de emergência, sem preventivo, sem histórico e sem prazo.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Sem controle de acesso</strong>Qualquer funcionário acessa qualquer arquivo. Risco interno e externo elevado.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Equipamentos sem manutenção</strong>Lentidão e falhas que comprometem a produtividade da equipe.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Risco de multa LGPD</strong>Dados de clientes e colaboradores sem política de privacidade formal.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Sem documentação técnica</strong>A empresa não sabe o que tem. Dependência total de uma única pessoa.</div>
+        <div class="prob-item"><strong><span class="pdot"></span>Custo de TI imprevisível</strong>Gastos reativos e emergenciais que somam mais que uma gestão preventiva mensal.</div>
+      </div>
+      <div class="alert-box-red reveal"><strong>Custo real de uma falha técnica grave:</strong> uma empresa com 10 colaboradores que perde um dia de operação por falha de servidor enfrenta impacto direto em atendimento, vendas e reputação — além do custo de recuperação de emergência, que costuma ser 3× a 5× maior que o custo de uma gestão preventiva mensal.</div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES -->
+  <section style="background:var(--bg);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Soluções completas</p>
+      <h2 class="sec-title">Tudo que sua empresa precisa em TI, num único parceiro</h2>
+      <p class="sec-sub">Da implantação do servidor ao suporte diário — gestão contínua, preventiva e com responsabilidade contratual.</p>
+      <div class="g3 reveal">
+        <div class="sol-card"><div class="sol-ic">🖥️</div><h4>Servidor Local Corporativo</h4><ul><li>Implantação de servidor físico ou virtual</li><li>Gerenciamento centralizado de arquivos</li><li>Active Directory · controle de usuários</li><li>Compartilhamentos por departamento</li><li>Monitoramento contínuo de saúde</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">💾</div><h4>Backup Automatizado 3-2-1</h4><ul><li>3 cópias · 2 mídias diferentes · 1 offsite</li><li>Backup local + nuvem redundante</li><li>Agendamento automático diário</li><li>Teste de restauração periódico</li><li>Alertas de falha em tempo real</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">🔒</div><h4>Segurança da Informação</h4><ul><li>Controle de acesso por usuário e cargo</li><li>Antivírus gerenciado corporativo</li><li>Patches e atualizações de segurança</li><li>Conformidade LGPD documentada</li><li>Treinamento de boas práticas</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">🔧</div><h4>Suporte Técnico Contínuo</h4><ul><li>Computadores e notebooks</li><li>Impressoras, scanners e periféricos</li><li>Servidores físicos e virtuais</li><li>Instalação e atualização de softwares</li><li>Suporte remoto e presencial com SLA</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">🌐</div><h4>Redes & Conectividade</h4><ul><li>Configuração e otimização de rede local</li><li>Wi-Fi corporativo segmentado</li><li>Firewall · pfSense · regras de acesso</li><li>VPN para acesso remoto seguro</li><li>Cabeamento estruturado</li></ul></div>
+        <div class="sol-card"><div class="sol-ic">⚡</div><h4>Automação & Produtividade</h4><ul><li>Automação de rotinas administrativas</li><li>Integração entre sistemas via API</li><li>Scripts de diagnóstico e relatórios</li><li>Google Workspace · Microsoft 365</li><li>E-mail profissional e domínio próprio</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section style="background:var(--bg2);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Por que a UPTECH</p>
+      <h2 class="sec-title">Parceiro técnico, não apenas fornecedor</h2>
+      <p class="sec-sub">A diferença entre um técnico chamado na emergência e uma empresa que conhece sua infraestrutura, antecipa problemas e entrega relatórios mensais para a gestão.</p>
+      <div class="g3 reveal">
+        <div class="dif-card"><div class="dif-num">01</div><h4>Gestão preventiva, não reativa</h4><p>Monitoramento ativo da infraestrutura. Identificamos e resolvemos riscos antes que virem falhas com impacto no negócio.</p></div>
+        <div class="dif-card"><div class="dif-num">02</div><h4>SLA contratual com penalidades</h4><p>Tempos máximos de resposta e resolução definidos em contrato. Não é promessa — é cláusula com responsabilidade jurídica.</p></div>
+        <div class="dif-card"><div class="dif-num">03</div><h4>Documentação técnica completa</h4><p>Topologia, inventário, credenciais seguras e histórico. O conhecimento da TI pertence à sua empresa, não ao técnico.</p></div>
+        <div class="dif-card"><div class="dif-num">04</div><h4>Relatório mensal para a gestão</h4><p>Linguagem acessível para não-técnicos: o que foi feito, incidentes resolvidos, riscos identificados e próximos passos.</p></div>
+        <div class="dif-card"><div class="dif-num">05</div><h4>Atendimento direto e sem intermediários</h4><p>Você fala diretamente com o responsável técnico. Sem call center, sem fila, sem terceirização oculta.</p></div>
+        <div class="dif-card"><div class="dif-num">06</div><h4>Crescimento planejado da TI</h4><p>Planejamento tecnológico alinhado ao crescimento da empresa — sem investimentos desnecessários.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLA -->
+  <section style="background:var(--bg3);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Compromisso contratual</p>
+      <h2 class="sec-title">SLA com tempo de resposta definido em contrato</h2>
+      <p class="sec-sub">Previsibilidade real para sua empresa. Nenhuma falha fica sem prazo de resolução.</p>
+      <div class="g4 reveal">
+        <div class="sla-card"><span class="sla-badge sc1">Crítica</span><p>Servidor ou rede fora do ar · operação parada</p><div class="sla-time">1h resposta</div><div class="sla-res">Resolução: até 4 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc2">Alta</span><p>Falha parcial · impacto em setor ou equipe</p><div class="sla-time">2h resposta</div><div class="sla-res">Resolução: até 8 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc3">Normal</span><p>Problema isolado sem impacto imediato</p><div class="sla-time">4h resposta</div><div class="sla-res">Resolução: até 24 horas</div></div>
+        <div class="sla-card"><span class="sla-badge sc4">Baixa</span><p>Melhorias, novos acessos e configurações</p><div class="sla-time">1 dia útil</div><div class="sla-res">Resolução: até 5 dias úteis</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFÍCIOS + TABELA -->
+  <section style="background:var(--bg);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Benefícios da parceria</p>
+      <h2 class="sec-title">O que muda quando a TI é gerida de verdade</h2>
+      <p class="sec-sub">Impacto direto na operação, na segurança e na produtividade da sua empresa.</p>
+      <div class="g3 reveal" style="margin-bottom:36px">
+        <div class="ben-card"><div class="ben-ic">📉</div><div><h5>Redução de falhas operacionais</h5><p>Manutenção preventiva reduz drasticamente interrupções não planejadas.</p></div></div>
+        <div class="ben-card"><div class="ben-ic">🔐</div><div><h5>Maior segurança das informações</h5><p>Dados de clientes e da empresa protegidos por política formal e tecnologia.</p></div></div>
+        <div class="ben-card"><div class="ben-ic">📈</div><div><h5>Aumento de produtividade</h5><p>Equipe com equipamentos funcionando, acesso organizado e suporte ágil.</p></div></div>
+        <div class="ben-card"><div class="ben-ic">💰</div><div><h5>Custo de TI previsível</h5><p>Mensalidade fixa, sem surpresas de emergência. Orçamento controlado.</p></div></div>
+        <div class="ben-card"><div class="ben-ic">📋</div><div><h5>Continuidade operacional</h5><p>Backup garantido, SLA ativo e plano de recuperação documentado.</p></div></div>
+        <div class="ben-card"><div class="ben-ic">🚀</div><div><h5>Crescimento estruturado</h5><p>Infraestrutura que acompanha o crescimento da empresa sem retrabalho.</p></div></div>
+      </div>
+      <table class="res-table reveal">
+        <thead><tr><th>Dimensão</th><th>Sem gestão estruturada</th><th>Com a UPTECH</th></tr></thead>
+        <tbody>
+          <tr><td>Disponibilidade dos sistemas</td><td>Interrupções frequentes sem prazo</td><td>Uptime elevado com monitoramento ativo</td></tr>
+          <tr><td>Segurança de dados</td><td>Backup informal ou inexistente</td><td>Política 3-2-1 automatizada e testada</td></tr>
+          <tr><td>Tempo de resolução</td><td>Imprevisível, sem contrato</td><td>SLA garantido em contrato</td></tr>
+          <tr><td>Controle de acesso</td><td>Qualquer um acessa tudo</td><td>Permissões por usuário e cargo</td></tr>
+          <tr><td>Custo de TI</td><td>Reativo e imprevisível</td><td>Mensal fixo, sem surpresas</td></tr>
+          <tr><td>Conformidade LGPD</td><td>Risco de multas e sanções</td><td>Boas práticas documentadas</td></tr>
+          <tr><td>Visibilidade da gestão</td><td>TI é uma caixa preta</td><td>Relatório mensal claro e objetivo</td></tr>
+          <tr><td>Documentação</td><td>Inexistente ou no técnico</td><td>Atualizada e pertence à empresa</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section style="background:var(--bg2);padding:80px 5%" id="corp-planos">
+    <div class="sec-inner">
+      <p class="sec-label">Planos de serviço</p>
+      <h2 class="sec-title">Para empresas de qualquer porte</h2>
+      <p class="sec-sub">Planos de suporte mensal contínuo + implantação inicial sob medida. O investimento é definido após levantamento técnico gratuito.</p>
+      <div class="price-note">Os valores são personalizados com base no número de equipamentos, complexidade da infraestrutura e serviços contratados. <a href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Gostaria%20de%20receber%20uma%20proposta%20para%20minha%20empresa." target="_blank">Entre em contato para receber uma proposta →</a></div>
+      <div class="g3 reveal">
+        <div class="plan-card"><div class="plan-name">Essencial</div><div class="plan-target">Até 10 equipamentos · 1 servidor ou sem servidor · foco em suporte e backup</div><ul class="plan-ul"><li class="yes">Suporte remoto (horário comercial)</li><li class="yes">Suporte presencial programado</li><li class="yes">Manutenção preventiva de PCs</li><li class="yes">Backup automatizado gerenciado</li><li class="yes">Antivírus e atualizações</li><li class="yes">Inventário de ativos</li><li class="no">Servidor / Active Directory</li><li class="no">Relatório mensal técnico</li><li class="no">SLA com penalidades contratuais</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+        <div class="plan-card feat"><div class="plan-badge">Mais contratado</div><div class="plan-name">Profissional</div><div class="plan-target">10–30 equipamentos · servidor local · múltiplos setores</div><ul class="plan-ul"><li class="yes">Tudo do plano Essencial</li><li class="yes">Implantação / gestão de servidor</li><li class="yes">Active Directory · GPO · usuários</li><li class="yes">Backup 3-2-1 + nuvem redundante</li><li class="yes">Segurança e controle de acesso</li><li class="yes">Rede, Wi-Fi e firewall</li><li class="yes">Relatório mensal técnico</li><li class="no">Virtualização (Proxmox/Hyper-V)</li><li class="no">SLA com penalidades contratuais</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+        <div class="plan-card"><div class="plan-name">Corporativo</div><div class="plan-target">+30 equipamentos · múltiplos servidores · alta disponibilidade</div><ul class="plan-ul"><li class="yes">Tudo do plano Profissional</li><li class="yes">Virtualização (Proxmox / Hyper-V)</li><li class="yes">VPN corporativa para acesso remoto</li><li class="yes">Monitoramento Zabbix + Grafana</li><li class="yes">Documentação técnica completa</li><li class="yes">Conformidade LGPD documentada</li><li class="yes">SLA contratual com penalidades</li><li class="yes">Planejamento tecnológico anual</li></ul><a class="plan-cta" href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section style="background:var(--bg3);padding:80px 5%">
+    <div class="sec-inner">
+      <p class="sec-label">Como contratar</p>
+      <h2 class="sec-title">Do primeiro contato à operação gerenciada em 5 etapas</h2>
+      <p class="sec-sub">Processo simples, direto e sem burocracia. Contrato com vigência mínima de 12 meses e reajuste anual pelo IPCA.</p>
+      <div class="g6 reveal" style="grid-template-columns:repeat(auto-fit,minmax(160px,1fr))">
+        <div class="proc-item"><div class="proc-num">01</div><h5>Levantamento técnico</h5><p>Visita presencial gratuita. Diagnóstico completo da infraestrutura atual.</p></div>
+        <div class="proc-item"><div class="proc-num">02</div><h5>Proposta personalizada</h5><p>Relatório técnico + proposta comercial com escopo detalhado em até 5 dias úteis.</p></div>
+        <div class="proc-item"><div class="proc-num">03</div><h5>Assinatura do contrato</h5><p>Contrato com SLA, sigilo, responsabilidade técnica e respaldo jurídico.</p></div>
+        <div class="proc-item"><div class="proc-num">04</div><h5>Implantação</h5><p>Configuração do ambiente, servidor, backup e documentação inicial.</p></div>
+        <div class="proc-item"><div class="proc-num">05</div><h5>Gestão contínua</h5><p>SLA ativo, monitoramento, suporte e relatório mensal permanente.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONVERSION CORPORATIVO -->
+  <div class="conversion">
+    <div class="conversion-inner reveal">
+      <h2>Solicite o levantamento técnico gratuito</h2>
+      <p>Presencial na Grande Salvador e Região Metropolitana. Diagnóstico completo, proposta personalizada e sem compromisso de contratação.</p>
+      <a class="btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px" href="https://wa.me/5571997362588?text=Olá%20Bruno!%20Gostaria%20de%20solicitar%20um%20levantamento%20técnico%20gratuito%20para%20minha%20empresa." target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp — (71) 99736-2588
+      </a>
+      <p class="reply-note">Respondo em até <span>2 horas</span> em dias úteis · bruno.alves@uptechst.com.br</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left"><strong>UPTECH</strong> Soluções Tecnológicas · Salvador · Lauro de Freitas · Camaçari – BA<br><span style="font-size:12px">(71) 99736-2588 · bruno.alves@uptechst.com.br</span></div>
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/brunoalvestech" target="_blank">LinkedIn</a>
+        <a href="https://www.instagram.com/uptech_st/" target="_blank">Instagram</a>
+        <a href="https://wa.me/5571997362588" target="_blank">WhatsApp</a>
+        <button onclick="showPage('portfolio')" style="background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif">← Portfólio pessoal</button>
+      </div>
+    </div>
+  </footer>
+</div><!-- /page-corporativo -->
 
 <!-- FLOATING WA -->
-<a class="wa-float" href="https://wa.me/5571981230424?text=Olá%2C%20Bruno!%20Vi%20seu%20portfólio%20e%20gostaria%20de%20conversar." target="_blank" aria-label="Falar no WhatsApp">
+<a class="wa-float" href="https://wa.me/5571981230424?text=Olá%20Bruno!%20Vi%20seu%20site%20e%20gostaria%20de%20conversar." target="_blank" aria-label="Falar no WhatsApp">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
 <script>
-/* =========================================
-   MOBILE MENU — sem inline styles, sem bugs
-   ========================================= */
-const btn = document.getElementById('hamburgerBtn');
-const menu = document.getElementById('mobileMenu');
+/* ── PAGE SWITCHING ── */
+const pages = ['portfolio','escolas','corporativo'];
+const navConfigs = {
+  portfolio: {
+    links: [
+      {text:'Serviços', fn:"scrollToId('servicos')"},
+      {text:'Portfólio', fn:"scrollToId('portfolio-sec')"},
+      {text:'Sobre', fn:"scrollToId('sobre')"},
+      {text:'Contato', fn:"scrollToId('contato')"}
+    ],
+    announce: 'Disponível para novos projetos e contratos — <a href="https://wa.me/5571981230424" target="_blank">Falar no WhatsApp →</a>'
+  },
+  escolas: {
+    links: [
+      {text:'Serviços', fn:"scrollToTop()"},
+      {text:'Plataformas', fn:"scrollToTop()"},
+      {text:'Planos', fn:"document.getElementById('escolas-planos').scrollIntoView({behavior:'smooth'})"},
+      {text:'Contato', fn:"document.querySelector('#page-escolas .conversion').scrollIntoView({behavior:'smooth'})"}
+    ],
+    announce: 'UPTECH · Escolas Privadas — diagnóstico técnico gratuito e sem compromisso. <a href="https://wa.me/5571997362588" target="_blank">Agendar →</a>'
+  },
+  corporativo: {
+    links: [
+      {text:'Soluções', fn:"scrollToTop()"},
+      {text:'Segurança', fn:"scrollToTop()"},
+      {text:'Planos', fn:"document.getElementById('corp-planos').scrollIntoView({behavior:'smooth'})"},
+      {text:'Contato', fn:"document.querySelector('#page-corporativo .conversion').scrollIntoView({behavior:'smooth'})"}
+    ],
+    announce: 'UPTECH · Corporativo — servidor, backup e suporte com SLA para empresas. <a href="https://wa.me/5571997362588" target="_blank">Solicitar proposta →</a>'
+  }
+};
 
-function openMenu() {
-  menu.classList.add('open');
-  btn.classList.add('open');
-  btn.setAttribute('aria-expanded', 'true');
-  menu.setAttribute('aria-hidden', 'false');
-  document.body.style.overflow = 'hidden';
+function showPage(name) {
+  pages.forEach(p => {
+    document.getElementById('page-' + p).classList.toggle('active', p === name);
+    const btn = document.getElementById('sw-' + p);
+    if(btn) btn.classList.toggle('active', p === name);
+  });
+  // update nav links
+  const cfg = navConfigs[name];
+  const navLinks = document.getElementById('navLinks');
+  navLinks.innerHTML = cfg.links.map(l =>
+    `<li><a href="#" onclick="${l.fn};return false">${l.text}</a></li>`
+  ).join('');
+  // update announce
+  document.getElementById('announceBar').innerHTML = cfg.announce;
+  window.scrollTo({top:0, behavior:'instant'});
+  // re-observe reveals
+  setTimeout(initReveals, 50);
 }
 
+function scrollToId(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth'});
+}
+function scrollToTop() { window.scrollTo({top:0, behavior:'smooth'}); }
+
+/* ── MOBILE MENU ── */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
 function closeMenu() {
-  menu.classList.remove('open');
-  btn.classList.remove('open');
-  btn.setAttribute('aria-expanded', 'false');
-  menu.setAttribute('aria-hidden', 'true');
+  mobileMenu.classList.remove('open');
+  hamburgerBtn.classList.remove('open');
+  hamburgerBtn.setAttribute('aria-expanded','false');
+  mobileMenu.setAttribute('aria-hidden','true');
   document.body.style.overflow = '';
 }
-
-btn.addEventListener('click', () => {
-  menu.classList.contains('open') ? closeMenu() : openMenu();
-});
-
-// Fechar ao clicar em link de menu
-document.querySelectorAll('.menu-link').forEach(link => {
-  link.addEventListener('click', closeMenu);
-});
-
-// Fechar ao clicar fora
-document.addEventListener('click', (e) => {
-  if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
-    closeMenu();
+hamburgerBtn.addEventListener('click', () => {
+  const isOpen = mobileMenu.classList.contains('open');
+  if(isOpen) { closeMenu(); } else {
+    mobileMenu.classList.add('open');
+    hamburgerBtn.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded','true');
+    mobileMenu.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
   }
 });
-
-// Fechar com ESC
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+document.addEventListener('click', e => {
+  if(mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) closeMenu();
 });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeMenu(); });
 
-/* =========================================
-   SCROLL REVEAL
-   ========================================= */
-const reveals = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
+/* ── SCROLL REVEAL ── */
+let io;
+function initReveals() {
+  if(io) io.disconnect();
+  io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.08, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.active .reveal').forEach(el => {
+    el.classList.remove('visible');
+    io.observe(el);
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => io.observe(el));
+}
+initReveals();
 </script>
 </body>
 </html>
